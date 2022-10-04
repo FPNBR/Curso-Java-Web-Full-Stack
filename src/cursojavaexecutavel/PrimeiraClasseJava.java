@@ -8,7 +8,7 @@ public class PrimeiraClasseJava {
 
     public static void main(String[] args) {
 
-        String nome = JOptionPane.showInputDialog("Qual o nome do aluno?");
+        /*String nome = JOptionPane.showInputDialog("Qual o nome do aluno?");
         String idade = JOptionPane.showInputDialog("Qual a idade do aluno?");
         String dataNascimento = JOptionPane.showInputDialog("Qual a data de nascimento do aluno?");
         String rg = JOptionPane.showInputDialog("Qual o RG do aluno?");
@@ -42,7 +42,22 @@ public class PrimeiraClasseJava {
         System.out.println(aluno1);
         System.out.println("A média da nota do aluno é = " + aluno1.getMediaNota());
         System.out.println("Resultado = " + (aluno1.getAlunoAprovado() ? "Aprovado" : "Reprovado"));
-        System.out.println("Resultado 2 = " + (aluno1.getAlunoAprovado2()));
+        System.out.println("Resultado 2 = " + (aluno1.getAlunoAprovado2()));*/
+
+        Aluno aluno1 = new Aluno();
+        aluno1.setNome("Felipe");
+        aluno1.setNumeroCpf("123");
+
+        Aluno aluno2 = new Aluno();
+        aluno2.setNome("Felipe");
+        aluno2.setNumeroCpf("1234");
+
+        if (aluno1.equals(aluno2)) {
+            System.out.println("Alunos são iguais");
+        }
+        else {
+            System.out.println("Alunos não são iguais");
+        }
 
     }
 }
