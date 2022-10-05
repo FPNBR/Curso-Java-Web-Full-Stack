@@ -14,9 +14,13 @@ public class Aluno {
     private String nomeEscola;
     private String serieMatriculado;
     private double nota1;
+    private String disciplina1;
     private double nota2;
+    private String disciplina2;
     private double nota3;
+    private String disciplina3;
     private double nota4;
+    private String disciplina4;
 
     public Aluno() {
     }
@@ -142,6 +146,38 @@ public class Aluno {
         this.nota4 = nota4;
     }
 
+    public String getDisciplina1() {
+        return disciplina1;
+    }
+
+    public void setDisciplina1(String disciplina1) {
+        this.disciplina1 = disciplina1;
+    }
+
+    public String getDisciplina2() {
+        return disciplina2;
+    }
+
+    public void setDisciplina2(String disciplina2) {
+        this.disciplina2 = disciplina2;
+    }
+
+    public String getDisciplina3() {
+        return disciplina3;
+    }
+
+    public void setDisciplina3(String disciplina3) {
+        this.disciplina3 = disciplina3;
+    }
+
+    public String getDisciplina4() {
+        return disciplina4;
+    }
+
+    public void setDisciplina4(String disciplina4) {
+        this.disciplina4 = disciplina4;
+    }
+
     public double getMediaNota() {
         return (nota1 + nota2 + nota3 + nota4) / 4.0;
     }
@@ -180,9 +216,13 @@ public class Aluno {
                 ", nomeEscola='" + nomeEscola + '\'' +
                 ", serieMatriculado='" + serieMatriculado + '\'' +
                 ", nota1=" + nota1 +
+                ", disciplina1='" + disciplina1 + '\'' +
                 ", nota2=" + nota2 +
+                ", disciplina2='" + disciplina2 + '\'' +
                 ", nota3=" + nota3 +
+                ", disciplina3='" + disciplina3 + '\'' +
                 ", nota4=" + nota4 +
+                ", disciplina4='" + disciplina4 + '\'' +
                 '}';
     }
 
