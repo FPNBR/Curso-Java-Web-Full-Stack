@@ -39,16 +39,6 @@ public class PrimeiraClasseJava {
         aluno1.setSerieMatriculado(serie);
         aluno1.setNomeEscola(nomeEscola);
 
-        aluno1.getDisciplina().setDisciplina1(disciplinaUm);
-        aluno1.getDisciplina().setDisciplina2(disciplinaDois);
-        aluno1.getDisciplina().setDisciplina3(disciplinaTres);
-        aluno1.getDisciplina().setDisciplina4(disciplinaQuatro);
-
-        aluno1.getDisciplina().setNota1(Double.parseDouble(notaUm));
-        aluno1.getDisciplina().setNota2(Double.parseDouble(notaDois));
-        aluno1.getDisciplina().setNota3(Double.parseDouble(notaTres));
-        aluno1.getDisciplina().setNota4(Double.parseDouble(notaQuatro));
-
         System.out.println(aluno1);
         System.out.println("A média da nota do aluno é = " + aluno1.getMediaNota());
         System.out.println("Resultado = " + (aluno1.getAlunoAprovado() ? "Aprovado" : "Reprovado"));
