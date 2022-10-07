@@ -60,11 +60,14 @@ public class PrimeiraClasseJava {
         }
 
         for (Aluno aluno: alunos) {
-            System.out.println(aluno);
-            System.out.println("A média da nota do aluno é = " + aluno.getMediaNota());
-            System.out.println("Resultado = " + (aluno.getAlunoAprovado() ? "Aprovado" : "Reprovado"));
-            System.out.println("Resultado 2 = " + (aluno.getAlunoAprovado2()));
-            System.out.println("-------------------------------------------------------------------------");
+            if(aluno.getNome().equalsIgnoreCase("felipe")) {
+                System.out.println(aluno);
+                System.out.println("A média da nota do aluno é = " + aluno.getMediaNota());
+                System.out.println("Resultado = " + (aluno.getAlunoAprovado() ? "Aprovado" : "Reprovado"));
+                System.out.println("Resultado 2 = " + (aluno.getAlunoAprovado2()));
+                System.out.println("-------------------------------------------------------------------------");
+                break;
+            }
         }
     }
 }
