@@ -13,7 +13,7 @@ public class PrimeiraClasseJava {
 
         List<Aluno> alunos = new ArrayList<Aluno>();
 
-        for (int i = 1; i <= 1; i++) {
+        for (int i = 1; i <= 2; i++) {
             String nome = JOptionPane.showInputDialog("Qual o nome do aluno " + i + " ?");
             String idade = JOptionPane.showInputDialog("Qual a idade do aluno?");
             String dataNascimento = JOptionPane.showInputDialog("Qual a data de nascimento do aluno?");
@@ -37,7 +37,7 @@ public class PrimeiraClasseJava {
             aluno1.setSerieMatriculado(serie);
             aluno1.setNomeEscola(nomeEscola);
 
-            for (int j = 1; j <= 4; j++) {
+            for (int j = 1; j <= 1; j++) {
                 String nomeDisciplina = JOptionPane.showInputDialog("Nome da disciplina " + j + " ?");
                 String notaDisciplina = JOptionPane.showInputDialog("Nota da disciplina " + j + " ?");
                 Disciplina disciplina = new Disciplina();
@@ -61,6 +61,18 @@ public class PrimeiraClasseJava {
 
         for (int pos = 0; pos < alunos.size(); pos++) {
             Aluno aluno = alunos.get(pos);
+
+            if (aluno.getNome().equalsIgnoreCase("felipe")) {
+                Aluno trocar = new Aluno();
+                trocar.setNome("Aluno foi trocado");
+                Disciplina disciplina = new Disciplina();
+                disciplina.setDisciplina("Matemática");
+                disciplina.setNota(96);
+                trocar.getDisciplinas().add(disciplina);
+                alunos.set(pos, trocar);
+                aluno = alunos.get(pos);
+            }
+
             System.out.println("Aluno = " + aluno);
             System.out.println("Média do aluno = " + aluno.getMediaNota());
             System.out.println("Resultado = " + aluno.getAlunoAprovado2());
