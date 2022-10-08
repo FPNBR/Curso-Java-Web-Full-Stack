@@ -13,7 +13,7 @@ public class PrimeiraClasseJava {
 
         List<Aluno> alunos = new ArrayList<Aluno>();
 
-        for (int i = 1; i <= 2; i++) {
+        for (int i = 1; i <= 1; i++) {
             String nome = JOptionPane.showInputDialog("Qual o nome do aluno " + i + " ?");
             String idade = JOptionPane.showInputDialog("Qual a idade do aluno?");
             String dataNascimento = JOptionPane.showInputDialog("Qual a data de nascimento do aluno?");
@@ -59,26 +59,16 @@ public class PrimeiraClasseJava {
             alunos.add(aluno1);
         }
 
-        for (Aluno aluno: alunos) {
-            if (aluno.getNome().equalsIgnoreCase("felipe")) {
-                alunos.remove(aluno);
-                break;
-            }
-            else {
-                System.out.println(aluno);
-                System.out.println("A média da nota do aluno é = " + aluno.getMediaNota());
-                System.out.println("Resultado = " + (aluno.getAlunoAprovado() ? "Aprovado" : "Reprovado"));
-                System.out.println("Resultado 2 = " + (aluno.getAlunoAprovado2()));
-                System.out.println("-------------------------------------------------------------------------");
-            }
-        }
-        for (Aluno aluno: alunos) {
-            System.out.println("Alunos que sobraram na lista");
-            System.out.println(aluno.getNome());
-            System.out.println("Suas matérias são");
+        for (int pos = 0; pos < alunos.size(); pos++) {
+            Aluno aluno = alunos.get(pos);
+            System.out.println("Aluno = " + aluno);
+            System.out.println("Média do aluno = " + aluno.getMediaNota());
+            System.out.println("Resultado = " + aluno.getAlunoAprovado2());
+            System.out.println("----------------------------------------");
 
-            for (Disciplina disciplina : aluno.getDisciplinas()) {
-                System.out.println(disciplina.getDisciplina());
+            for (int posd = 0; posd < aluno.getDisciplinas().size(); posd ++) {
+                Disciplina disc = aluno.getDisciplinas().get(posd);
+                System.out.println("Matéria = " + disc.getDisciplina() + " / Nota = " + disc.getNota());
             }
         }
     }
