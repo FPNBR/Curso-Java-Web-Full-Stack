@@ -6,14 +6,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
-public class Aluno {
-    private String nome;
-    private int idade;
-    private String dataNascimento;
-    private String registroGeral;
-    private String numeroCpf;
-    private String nomeMae;
-    private String nomePai;
+public class Aluno extends Pessoa {
     private String dataMatricula;
     private String nomeEscola;
     private String serieMatriculado;
