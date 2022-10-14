@@ -69,4 +69,6 @@ public abstract class Pessoa {
     public boolean pessoaMaiorIdade() {
         return idade >= 18;
     }
+
+    public abstract double salario();
 }
