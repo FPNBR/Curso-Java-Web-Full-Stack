@@ -176,4 +176,13 @@ public class Aluno extends Pessoa {
     public int hashCode() {
         return Objects.hash(nome, numeroCpf);
     }
+
+    @Override
+    public boolean pessoaMaiorIdade() {
+        return idade >= 21;
+    }
+
+    public String msgMaiorIdade() {
+        return this.pessoaMaiorIdade() ? "O aluno é maior de idade" : "O aluno é menor de idade";
+    }
 }
