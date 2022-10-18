@@ -4,6 +4,7 @@ import cursojavaclasses.Aluno;
 import cursojavaclasses.Disciplina;
 import cursojavaclasses.Secretario;
 import cursojavaconstantes.StatusAluno;
+import cursojavainterfaces.PermitirAcesso;
 
 import javax.swing.*;
 import java.util.ArrayList;
@@ -17,11 +18,7 @@ public class PrimeiraClasseJava {
         String login = JOptionPane.showInputDialog("Informe o login");
         String senha = JOptionPane.showInputDialog("Informe a senha");
 
-        Secretario secretario = new Secretario();
-        secretario.setLogin(login);
-        secretario.setSenha(senha);
-
-        if (secretario.autenticar()) {
+        if (new Secretario().autenticar(login, senha)) {
 
             List<Aluno> alunos = new ArrayList<Aluno>();
 
