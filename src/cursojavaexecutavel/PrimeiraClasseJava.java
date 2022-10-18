@@ -2,6 +2,7 @@ package cursojavaexecutavel;
 
 import cursojavaclasses.Aluno;
 import cursojavaclasses.Disciplina;
+import cursojavaclasses.Secretario;
 import cursojavaconstantes.StatusAluno;
 
 import javax.swing.*;
@@ -16,7 +17,11 @@ public class PrimeiraClasseJava {
         String login = JOptionPane.showInputDialog("Informe o login");
         String senha = JOptionPane.showInputDialog("Informe a senha");
 
-        if (login.equalsIgnoreCase("admin") && senha.equalsIgnoreCase("admin")) {
+        Secretario secretario = new Secretario();
+        secretario.setLogin(login);
+        secretario.setSenha(senha);
+
+        if (secretario.autenticar()) {
 
             List<Aluno> alunos = new ArrayList<Aluno>();
 
@@ -96,6 +101,9 @@ public class PrimeiraClasseJava {
             for (Aluno aluno : maps.get(StatusAluno.RECUPERACAO)) {
                 System.out.println("Resultado = " + aluno.getNome() + ": " + aluno.getAlunoAprovado2() + " com média de = " + aluno.getMediaNota());
             }
+        }
+        else {
+            JOptionPane.showMessageDialog(null, "Acesso negado");
         }
     }
 }
