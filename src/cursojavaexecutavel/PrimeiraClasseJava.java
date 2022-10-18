@@ -20,7 +20,7 @@ public class PrimeiraClasseJava {
 
         PermitirAcesso permitirAcesso = new Secretario(login, senha);
 
-        if (new Secretario().autenticar()) {
+        if (permitirAcesso.autenticar()) {
 
             List<Aluno> alunos = new ArrayList<Aluno>();
 
