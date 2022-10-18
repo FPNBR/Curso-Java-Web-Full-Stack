@@ -3,7 +3,6 @@ package cursojavaclasses;
 import java.util.Objects;
 
 public class Disciplina {
-
     private String disciplina;
     private double nota;
 
