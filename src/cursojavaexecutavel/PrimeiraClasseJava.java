@@ -1,10 +1,10 @@
 package cursojavaexecutavel;
 
 import cursojavaclasses.Aluno;
+import cursojavaclasses.Diretor;
 import cursojavaclasses.Disciplina;
-import cursojavaclasses.Secretario;
+import cursojavaclassesauxiliares.FuncaoAutenticacao;
 import cursojavaconstantes.StatusAluno;
-import cursojavainterfaces.PermitirAcesso;
 
 import javax.swing.*;
 import java.util.ArrayList;
@@ -18,9 +18,7 @@ public class PrimeiraClasseJava {
         String login = JOptionPane.showInputDialog("Informe o login");
         String senha = JOptionPane.showInputDialog("Informe a senha");
 
-        PermitirAcesso permitirAcesso = new Secretario(login, senha);
-
-        if (permitirAcesso.autenticar()) {
+        if (new FuncaoAutenticacao(new Diretor(login, senha)).autenticar()) {
 
             List<Aluno> alunos = new ArrayList<Aluno>();
 

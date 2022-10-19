@@ -9,7 +9,7 @@ public class Secretario extends Pessoa implements PermitirAcesso {
     private String login;
     private String senha;
 
-    public Secretario () {
+    public Secretario() {
     }
 
     public Secretario (String login, String senha) {
@@ -71,6 +71,6 @@ public class Secretario extends Pessoa implements PermitirAcesso {
 
     @Override
     public boolean autenticar() {
-        return login.equals("admin") && senha.equals("admin");
+        return login.equals("secretario") && senha.equals("secretario");
     }
 }
