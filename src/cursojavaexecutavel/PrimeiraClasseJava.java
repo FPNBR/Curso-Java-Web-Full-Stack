@@ -5,9 +5,11 @@ import cursojavaclasses.Diretor;
 import cursojavaclasses.Disciplina;
 import cursojavaclassesauxiliares.FuncaoAutenticacao;
 import cursojavaconstantes.StatusAluno;
+import cursojavaexcecao.ExcecaoProcessarNota;
 
 import javax.swing.*;
 import java.io.File;
+import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -18,9 +20,7 @@ public class PrimeiraClasseJava {
     public static void main(String[] args) {
 
         try {
-            //File file = new File("arquivo.txt");
-            //Scanner scanner = new Scanner(file);
-
+            lerArquivo();
             String login = JOptionPane.showInputDialog("Informe o login");
             String senha = JOptionPane.showInputDialog("Informe a senha");
 
@@ -127,12 +127,21 @@ public class PrimeiraClasseJava {
         catch (NullPointerException e) {
             JOptionPane.showMessageDialog(null, "Null Pointer Exception aqui" + e.getClass());
         }
-        catch (Exception e) {
+        catch (ExcecaoProcessarNota e) {
             e.printStackTrace();
-            JOptionPane.showMessageDialog(null, "Erro inesperado" + e.getClass().getName());
+            JOptionPane.showMessageDialog(null, "Erro da exceção customizada: " + e.getClass().getName());
         }
-        finally {
+        /*finally {
             JOptionPane.showMessageDialog(null, "Teste");
+        }*/
+    }
+    public static void lerArquivo () throws ExcecaoProcessarNota {
+        try {
+            File file = new File("arquivo.txt");
+            Scanner scanner = new Scanner(file);
+        }
+        catch (FileNotFoundException e) {
+            throw new ExcecaoProcessarNota(e.getMessage());
         }
     }
 }
