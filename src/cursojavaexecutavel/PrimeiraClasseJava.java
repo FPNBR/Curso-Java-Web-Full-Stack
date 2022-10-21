@@ -5,7 +5,6 @@ import cursojavaclasses.Diretor;
 import cursojavaclasses.Disciplina;
 import cursojavaclassesauxiliares.FuncaoAutenticacao;
 import cursojavaconstantes.StatusAluno;
-import cursojavaexcecao.ExcecaoProcessarNota;
 
 import javax.swing.*;
 import java.io.File;
@@ -110,8 +109,7 @@ public class PrimeiraClasseJava {
                 JOptionPane.showMessageDialog(null, "Acesso negado");
             }
         }
-        catch (NumberFormatException e) {
-
+        catch (Exception e) {
             StringBuilder saida = new StringBuilder();
             e.printStackTrace();
             System.out.println("Mensagem: " + e.getMessage());
@@ -124,24 +122,12 @@ public class PrimeiraClasseJava {
             }
             JOptionPane.showMessageDialog(null, "Erro de conversão de número" + saida.toString());
         }
-        catch (NullPointerException e) {
-            JOptionPane.showMessageDialog(null, "Null Pointer Exception aqui" + e.getClass());
-        }
-        catch (ExcecaoProcessarNota e) {
-            e.printStackTrace();
-            JOptionPane.showMessageDialog(null, "Erro da exceção customizada: " + e.getClass().getName());
-        }
-        /*finally {
+        finally {
             JOptionPane.showMessageDialog(null, "Teste");
-        }*/
+        }
     }
-    public static void lerArquivo () throws ExcecaoProcessarNota {
-        try {
+    public static void lerArquivo () throws FileNotFoundException {
             File file = new File("arquivo.txt");
             Scanner scanner = new Scanner(file);
-        }
-        catch (FileNotFoundException e) {
-            throw new ExcecaoProcessarNota(e.getMessage());
-        }
     }
 }
