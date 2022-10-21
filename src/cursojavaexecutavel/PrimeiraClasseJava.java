@@ -7,15 +7,20 @@ import cursojavaclassesauxiliares.FuncaoAutenticacao;
 import cursojavaconstantes.StatusAluno;
 
 import javax.swing.*;
+import java.io.File;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Scanner;
 
 public class PrimeiraClasseJava {
 
     public static void main(String[] args) {
 
         try {
+            File file = new File("arquivo.txt");
+            Scanner scanner = new Scanner(file);
+
             String login = JOptionPane.showInputDialog("Informe o login");
             String senha = JOptionPane.showInputDialog("Informe a senha");
 
@@ -121,6 +126,10 @@ public class PrimeiraClasseJava {
         }
         catch (NullPointerException e) {
             JOptionPane.showMessageDialog(null, "Null Pointer Exception aqui" + e.getClass());
+        }
+        catch (Exception e) {
+            e.printStackTrace();
+            JOptionPane.showMessageDialog(null, "Erro inesperado" + e.getClass().getName());
         }
     }
 }
