@@ -18,8 +18,8 @@ public class PrimeiraClasseJava {
     public static void main(String[] args) {
 
         try {
-            File file = new File("arquivo.txt");
-            Scanner scanner = new Scanner(file);
+            //File file = new File("arquivo.txt");
+            //Scanner scanner = new Scanner(file);
 
             String login = JOptionPane.showInputDialog("Informe o login");
             String senha = JOptionPane.showInputDialog("Informe a senha");
@@ -130,6 +130,9 @@ public class PrimeiraClasseJava {
         catch (Exception e) {
             e.printStackTrace();
             JOptionPane.showMessageDialog(null, "Erro inesperado" + e.getClass().getName());
+        }
+        finally {
+            JOptionPane.showMessageDialog(null, "Teste");
         }
     }
 }
