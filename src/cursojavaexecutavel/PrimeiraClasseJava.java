@@ -26,8 +26,9 @@ public class PrimeiraClasseJava {
 
                 HashMap<String, List<Aluno>> maps = new HashMap<String, List<Aluno>>();
 
-                for (int i = 1; i <= 2; i++) {
+                for (int i = 1; i <= 1; i++) {
                     String nome = JOptionPane.showInputDialog("Qual o nome do aluno " + i + " ?");
+                    /*
                     String idade = JOptionPane.showInputDialog("Qual a idade do aluno?");
                     String dataNascimento = JOptionPane.showInputDialog("Qual a data de nascimento do aluno?");
                     String rg = JOptionPane.showInputDialog("Qual o RG do aluno?");
@@ -37,9 +38,11 @@ public class PrimeiraClasseJava {
                     String dataMatricula = JOptionPane.showInputDialog("Qual a data de matrícula do aluno?");
                     String nomeEscola = JOptionPane.showInputDialog("Qual o nome da escola do aluno?");
                     String serie = JOptionPane.showInputDialog("Qual a série do aluno?");
+                     */
 
                     Aluno cadastrarAluno = new Aluno();
                     cadastrarAluno.setNome(nome);
+                    /*
                     cadastrarAluno.setIdade(Integer.parseInt(idade));
                     cadastrarAluno.setDataNascimento(dataNascimento);
                     cadastrarAluno.setRegistroGeral(rg);
@@ -49,6 +52,7 @@ public class PrimeiraClasseJava {
                     cadastrarAluno.setDataMatricula(dataMatricula);
                     cadastrarAluno.setSerieMatriculado(serie);
                     cadastrarAluno.setNomeEscola(nomeEscola);
+                     */
 
                     for (int j = 1; j <= 1; j++) {
                         String nomeDisciplina = JOptionPane.showInputDialog("Nome da disciplina " + j + " ?");
@@ -105,8 +109,18 @@ public class PrimeiraClasseJava {
             }
         }
         catch (Exception e) {
+
+            StringBuilder saida = new StringBuilder();
             e.printStackTrace();
-            JOptionPane.showMessageDialog(null, "Erro ao processar notas");
+            System.out.println("Mensagem: " + e.getMessage());
+
+            for (int i = 0; i < e.getStackTrace().length; i++) {
+                saida.append("\n Classe de erro: " + e.getStackTrace()[i].getClassName());
+                saida.append("\n Método de erro: " + e.getStackTrace()[i].getMethodName());
+                saida.append("\n Linha de erro: " + e.getStackTrace()[i].getLineNumber());
+                saida.append("\n Class: " + e.getClass().getName());
+            }
+            JOptionPane.showMessageDialog(null, "Erro ao processar notas" + saida.toString());
         }
     }
 }
