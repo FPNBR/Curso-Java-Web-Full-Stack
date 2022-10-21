@@ -16,20 +16,17 @@ public class PrimeiraClasseJava {
     public static void main(String[] args) {
 
         try {
-
             String login = JOptionPane.showInputDialog("Informe o login");
             String senha = JOptionPane.showInputDialog("Informe a senha");
 
             if (new FuncaoAutenticacao(new Diretor(login, senha)).autenticar()) {
-
                 List<Aluno> alunos = new ArrayList<Aluno>();
-
                 HashMap<String, List<Aluno>> maps = new HashMap<String, List<Aluno>>();
 
                 for (int i = 1; i <= 1; i++) {
                     String nome = JOptionPane.showInputDialog("Qual o nome do aluno " + i + " ?");
-                    /*
                     String idade = JOptionPane.showInputDialog("Qual a idade do aluno?");
+                    /*
                     String dataNascimento = JOptionPane.showInputDialog("Qual a data de nascimento do aluno?");
                     String rg = JOptionPane.showInputDialog("Qual o RG do aluno?");
                     String cpf = JOptionPane.showInputDialog("Qual o CPF do aluno?");
@@ -42,8 +39,8 @@ public class PrimeiraClasseJava {
 
                     Aluno cadastrarAluno = new Aluno();
                     cadastrarAluno.setNome(nome);
-                    /*
                     cadastrarAluno.setIdade(Integer.parseInt(idade));
+                    /*
                     cadastrarAluno.setDataNascimento(dataNascimento);
                     cadastrarAluno.setRegistroGeral(rg);
                     cadastrarAluno.setNumeroCpf(cpf);
@@ -108,7 +105,7 @@ public class PrimeiraClasseJava {
                 JOptionPane.showMessageDialog(null, "Acesso negado");
             }
         }
-        catch (Exception e) {
+        catch (NumberFormatException e) {
 
             StringBuilder saida = new StringBuilder();
             e.printStackTrace();
@@ -120,7 +117,10 @@ public class PrimeiraClasseJava {
                 saida.append("\n Linha de erro: " + e.getStackTrace()[i].getLineNumber());
                 saida.append("\n Class: " + e.getClass().getName());
             }
-            JOptionPane.showMessageDialog(null, "Erro ao processar notas" + saida.toString());
+            JOptionPane.showMessageDialog(null, "Erro de conversão de número" + saida.toString());
+        }
+        catch (NullPointerException e) {
+            JOptionPane.showMessageDialog(null, "Null Pointer Exception aqui" + e.getClass());
         }
     }
 }
