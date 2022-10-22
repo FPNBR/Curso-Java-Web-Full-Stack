@@ -19,7 +19,7 @@ public class PrimeiraClasseJava {
     public static void main(String[] args) {
 
         try {
-            lerArquivo();
+            //lerArquivo();
             String login = JOptionPane.showInputDialog("Informe o login");
             String senha = JOptionPane.showInputDialog("Informe a senha");
 
@@ -55,7 +55,7 @@ public class PrimeiraClasseJava {
                     cadastrarAluno.setNomeEscola(nomeEscola);
                      */
 
-                    for (int j = 1; j <= 1; j++) {
+                    for (int j = 1; j <= 2; j++) {
                         String nomeDisciplina = JOptionPane.showInputDialog("Nome da disciplina " + j + " ?");
                         String notaDisciplina = JOptionPane.showInputDialog("Nota da disciplina " + j + " ?");
                         Disciplina disciplina = new Disciplina();
@@ -70,8 +70,12 @@ public class PrimeiraClasseJava {
                         int posicao = 1;
                         while (continuarRemover == 0) {
                             String disciplinaRemover = JOptionPane.showInputDialog("Qual a disciplina 1, 2, 3 ou 4 ?");
-                            cadastrarAluno.getDisciplinas().remove(Integer.valueOf(disciplinaRemover).intValue() - posicao);
-                            continuarRemover = JOptionPane.showConfirmDialog(null, "Continuar a remover?");
+                            System.out.println(cadastrarAluno.getDisciplinas().remove(Integer.valueOf(disciplinaRemover).intValue() - posicao));
+                            posicao++;
+                            if (cadastrarAluno.getDisciplinas().isEmpty()) {
+                                break;
+                            }
+                            continuarRemover = JOptionPane.showConfirmDialog(null, "Deseja remover mais disciplinas?");
                         }
                     }
                     alunos.add(cadastrarAluno);
