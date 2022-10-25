@@ -60,7 +60,7 @@ public class PrimeiraClasseJava {
                         String notaDisciplina = JOptionPane.showInputDialog("Nota da disciplina " + j + " ?");
                         Disciplina disciplina = new Disciplina();
                         disciplina.setDisciplina(nomeDisciplina);
-                        disciplina.setNota(Double.parseDouble(notaDisciplina));
+                        //disciplina.setNota(Double.parseDouble(notaDisciplina));
                         cadastrarAluno.getDisciplinas().add(disciplina);
                     }
 
