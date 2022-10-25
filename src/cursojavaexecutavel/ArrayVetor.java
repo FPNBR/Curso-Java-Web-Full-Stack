@@ -1,20 +1,28 @@
 package cursojavaexecutavel;
 
+import cursojavaclasses.Aluno;
+import cursojavaclasses.Disciplina;
+
 import javax.swing.*;
 
 public class ArrayVetor {
     public static void main(String[] args) {
 
-        String posicoes = JOptionPane.showInputDialog("Quantas posições o Array deve ter?");
-        double[] notas = new double[Integer.parseInt(posicoes)];
+        Double[] notas = {8.8, 9.7, 7.6, 6.8};
+        Double[] notasLogica = {7.1, 5.7, 9.6, 7.8};
 
-        for (int i = 0; i < notas.length; i++) {
-            String valor = JOptionPane.showInputDialog("Qual o valor da posição " + (i + 1) + "?" );
-            notas[i] = Double.parseDouble(valor);
-        }
+        Aluno aluno = new Aluno();
+        aluno.setNome("Felipe");
+        aluno.setNomeEscola("Jdev Treinamento");
 
-        for (int i = 0; i < notas.length; i++) {
-            System.out.println("Nota " + (i + 1) + " é = " + notas[i]);
-        }
+        Disciplina disciplina = new Disciplina();
+        disciplina.setDisciplina("Curso de Java");
+        disciplina.setNota(notas);
+        aluno.getDisciplinas().add(disciplina);
+
+        Disciplina disciplina2 = new Disciplina();
+        disciplina.setDisciplina("Lógica de programação");
+        disciplina.setNota(notasLogica);
+        aluno.getDisciplinas().add(disciplina2);
     }
 }

@@ -1,10 +1,11 @@
 package cursojavaclasses;
 
+import java.util.Arrays;
 import java.util.Objects;
 
 public class Disciplina {
     private String disciplina;
-    private double nota;
+    private Double[] nota = new Double[4];
 
     public String getDisciplina() {
         return disciplina;
@@ -14,20 +15,20 @@ public class Disciplina {
         this.disciplina = disciplina;
     }
 
-    public double getNota() {
+    public Double[] getNota() {
         return nota;
     }
 
-    public void setNota(double nota) {
+    public void setNota(Double[] nota) {
         this.nota = nota;
     }
 
-    @Override
-    public String toString() {
-        return "Disciplina{" +
-                "disciplina='" + disciplina + '\'' +
-                ", nota=" + nota +
-                '}';
+    public double getMediaNotas() {
+        double somaNota = 0;
+        for (int i = 0; i < nota.length; i++) {
+            somaNota += nota[i];
+        }
+        return somaNota / nota.length;
     }
 
     @Override
@@ -35,12 +36,21 @@ public class Disciplina {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Disciplina that = (Disciplina) o;
-        return Double.compare(that.nota, nota) == 0 && Objects.equals(disciplina, that.disciplina);
+        return Objects.equals(disciplina, that.disciplina) && Arrays.equals(nota, that.nota);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(disciplina, nota);
+        int result = Objects.hash(disciplina);
+        result = 31 * result + Arrays.hashCode(nota);
+        return result;
     }
 
+    @Override
+    public String toString() {
+        return "Disciplina{" +
+                "disciplina='" + disciplina + '\'' +
+                ", nota=" + Arrays.toString(nota) +
+                '}';
+    }
 }
