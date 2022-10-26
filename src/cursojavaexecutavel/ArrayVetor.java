@@ -43,6 +43,18 @@ public class ArrayVetor {
                 }
             }
             System.out.println("A maior nota da Disciplina: " + d.getDisciplina() + ", é = " + maiorNota);
+
+            Double menorNota = 0.0;
+            for (int i = 0; i < d.getNota().length; i++) {
+                System.out.println("Nota " + (i + 1) + " é = " + d.getNota()[i]);
+                if (i == 0) {
+                    menorNota = d.getNota()[i];
+                }
+                else if (d.getNota()[i] < menorNota) {
+                    menorNota = d.getNota()[i];
+                }
+            }
+            System.out.println("A menor nota da Disciplina: " + d.getDisciplina() + ", é = " + menorNota);
         }
     }
 }
