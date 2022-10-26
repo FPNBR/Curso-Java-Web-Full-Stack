@@ -11,5 +11,12 @@ public class Matriz {
         notas[1][0] = 40;
         notas[1][1] = 60;
         notas[1][2] = 30;
+
+        for (int i = 0; i < notas.length; i++) {
+            System.out.println("----------------------------------");
+            for (int j = 0; j < notas[i].length; j++) {
+                System.out.println("Valor da matriz: " + notas[i][j]);
+            }
+        }
     }
 }
