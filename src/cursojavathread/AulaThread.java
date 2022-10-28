@@ -11,10 +11,27 @@ public class AulaThread {
             @Override
             public void run() {
                 for (int i = 0; i < 10; i++) {
-                    System.out.println("Executando...");
+                    System.out.println("Thread 1 - Executando...");
 
                     try {
                         Thread.sleep(1000);
+                    }
+                    catch (InterruptedException e) {
+                        throw new RuntimeException(e);
+                    }
+                }
+            }
+        }.start();
+
+        new Thread() {
+
+            @Override
+            public void run() {
+                for (int i = 0; i < 10; i++) {
+                    System.out.println("Thread 2 - Executando...");
+
+                    try {
+                        Thread.sleep(4000);
                     }
                     catch (InterruptedException e) {
                         throw new RuntimeException(e);
