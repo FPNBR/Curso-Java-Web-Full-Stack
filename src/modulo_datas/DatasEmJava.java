@@ -1,23 +1,24 @@
 package modulo_datas;
 
-import java.text.ParseException;
-import java.time.Duration;
-import java.time.Instant;
+import java.time.LocalDate;
+import java.time.Period;
 
 public class DatasEmJava {
-    public static void main(String[] args) throws ParseException, InterruptedException {
+    public static void main(String[] args) {
 
-        Instant inicio = Instant.now();
+        LocalDate dataAntiga = LocalDate.parse("2019-10-05");
+        LocalDate dataNova = LocalDate.parse("2022-07-01");
 
-        Thread.sleep(2000); // Pode ser um processo com tempo qualquer que não conhecemos
-        Instant ifinal = Instant.now();
+        System.out.println("Data antiga é maior que data nova: " + dataAntiga.isAfter(dataNova));
+        System.out.println("Data antiga é anterior que a data nova: " + dataAntiga.isBefore(dataNova));
+        System.out.println("Datas são iguais: " + dataAntiga.isEqual(dataNova));
 
-        Duration duracao = Duration.between(inicio, ifinal);
+        Period periodo = Period.between(dataAntiga, dataNova);
 
-        System.out.println("Duração em nano segundos: " + duracao.toNanos());
-        System.out.println("Duração em minutos: " + duracao.toMinutes());
-        System.out.println("Duração em horas: " + duracao.toHours());
-        System.out.println("Duração em milisegundos: " + duracao.toMillis());
-        System.out.println("Duração em milisegundos: " + duracao.toDays());
+        System.out.println("Quantos dias: " + periodo.getDays());
+        System.out.println("Quantos meses: " + periodo.getMonths());
+        System.out.println("Quantos anos: " + periodo.getYears());
+        System.out.println("Somente meses: " + periodo.toTotalMonths());
+        System.out.println("Período é: " + periodo.getYears() + " anos, " + periodo.getMonths() + " meses, " + "e " + periodo.getDays() + " dias");
     }
 }
