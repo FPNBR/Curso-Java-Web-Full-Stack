@@ -1,22 +1,25 @@
 package modulo_datas;
 
 import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.Calendar;
-import java.util.Date;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.LocalTime;
 
 public class DatasEmJava {
     public static void main(String[] args) throws ParseException {
 
-        Date dataInicial = new SimpleDateFormat("dd/MM/yyyy").parse("01/11/2022"); // Data inicial
+        // API de data a partir do Java 8
 
-        Calendar calendar = Calendar.getInstance();
-        calendar.setTime(dataInicial);
+        LocalDate dataAtual = LocalDate.now();
 
-        for (int parcela = 1; parcela <= 12; parcela ++) { // Gerar parcelas
-            calendar.add(Calendar.MONTH, 1); // A cada iteração adiciona um mês
+        System.out.println("Data atual: " + dataAtual);
 
-            System.out.println("Parcela número: " + parcela + " vencimento é em: " + new SimpleDateFormat("dd/MM/yyyy").format(calendar.getTime()));
-        }
+        LocalTime horaAtual = LocalTime.now();
+
+        System.out.println("Hora atual: " + horaAtual);
+
+        LocalDateTime dataAtualHoraAtual = LocalDateTime.now();
+
+        System.out.println("Data e hora atual: " + dataAtualHoraAtual);
     }
 }
