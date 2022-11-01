@@ -2,25 +2,22 @@ package modulo_datas;
 
 import java.text.ParseException;
 import java.time.LocalDate;
-import java.time.LocalDateTime;
-import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 
 public class DatasEmJava {
     public static void main(String[] args) throws ParseException {
 
-        // API de data a partir do Java 8
+        LocalDate localDate = LocalDate.now();
+        System.out.println("Data atual: " + localDate.format(DateTimeFormatter.ofPattern("dd/MM/yyyy")));
 
-        LocalDate dataAtual = LocalDate.now();
+        System.out.println("Dia da semana: " + localDate.getDayOfWeek()); // Dia da semana
 
-        System.out.println("Data atual: " + dataAtual.format(DateTimeFormatter.ofPattern("dd/MM/yyyy")));
+        System.out.println("Dia do mês: " + localDate.getDayOfMonth()); // Dia do mês
 
-        LocalTime horaAtual = LocalTime.now();
+        System.out.println("Dia do ano: " + localDate.getDayOfYear()); // Dia do ano
 
-        System.out.println("Hora atual: " + horaAtual.format(DateTimeFormatter.ofPattern("HH:mm:ss")));
+        System.out.println("Mês: " + localDate.getMonth()); // Nome do mês
 
-        LocalDateTime dataAtualHoraAtual = LocalDateTime.now();
-
-        System.out.println("Data e hora atual: " + dataAtualHoraAtual.format(DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm:ss")));
+        System.out.println("Ano: " + localDate.getYear()); // Número do mês
     }
 }
