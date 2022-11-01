@@ -1,23 +1,23 @@
 package modulo_datas;
 
 import java.text.ParseException;
-import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
+import java.time.Duration;
+import java.time.Instant;
 
 public class DatasEmJava {
-    public static void main(String[] args) throws ParseException {
+    public static void main(String[] args) throws ParseException, InterruptedException {
 
-        LocalDate localDate = LocalDate.now();
-        System.out.println("Data atual: " + localDate.format(DateTimeFormatter.ofPattern("dd/MM/yyyy")));
+        Instant inicio = Instant.now();
 
-        System.out.println("Dia da semana: " + localDate.getDayOfWeek()); // Dia da semana
+        Thread.sleep(2000); // Pode ser um processo com tempo qualquer que não conhecemos
+        Instant ifinal = Instant.now();
 
-        System.out.println("Dia do mês: " + localDate.getDayOfMonth()); // Dia do mês
+        Duration duracao = Duration.between(inicio, ifinal);
 
-        System.out.println("Dia do ano: " + localDate.getDayOfYear()); // Dia do ano
-
-        System.out.println("Mês: " + localDate.getMonth()); // Nome do mês
-
-        System.out.println("Ano: " + localDate.getYear()); // Número do mês
+        System.out.println("Duração em nano segundos: " + duracao.toNanos());
+        System.out.println("Duração em minutos: " + duracao.toMinutes());
+        System.out.println("Duração em horas: " + duracao.toHours());
+        System.out.println("Duração em milisegundos: " + duracao.toMillis());
+        System.out.println("Duração em milisegundos: " + duracao.toDays());
     }
 }
