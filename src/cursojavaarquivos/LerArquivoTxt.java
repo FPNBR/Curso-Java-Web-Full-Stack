@@ -11,7 +11,7 @@ import java.util.Scanner;
 public class LerArquivoTxt {
     public static void main(String[] args) throws FileNotFoundException {
 
-        FileInputStream entradaArquivo = new FileInputStream(new File("C:\\Users\\felip\\Documents\\Projetos\\Java\\Java-JDEVTreinamentos\\src\\cursojavaarquivos\\arquivo.txt"));
+        FileInputStream entradaArquivo = new FileInputStream(new File("C:\\Users\\felip\\Documents\\Projetos\\Java\\Java-JDEVTreinamentos\\src\\cursojavaarquivos\\arquivo.csv"));
 
         Scanner lerArquivo = new Scanner(entradaArquivo, StandardCharsets.UTF_8);
 
