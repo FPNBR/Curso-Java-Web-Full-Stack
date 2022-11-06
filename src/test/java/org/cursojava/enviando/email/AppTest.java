@@ -2,19 +2,19 @@ package org.cursojava.enviando.email;
 
 import org.junit.Test;
 
-import javax.mail.Authenticator;
-import javax.mail.PasswordAuthentication;
-import javax.mail.Session;
+import javax.mail.*;
+import javax.mail.internet.InternetAddress;
+import javax.mail.internet.MimeMessage;
 import java.util.Properties;
 
 public class AppTest {
 
     private String userName = "email";
     private String senha = "senha";
+
     @Test
     public void testeEmail() {
         try {
-
             Properties properties = new Properties();
             properties.put("mail.smtp.auth", "true"); // Autorização
             properties.put("mail.smtp.starttls", "true"); // Autenticação
@@ -29,6 +29,15 @@ public class AppTest {
                     return new PasswordAuthentication(userName, senha);
                 }
             });
+
+            Address[] toUser = InternetAddress.parse("email");
+            Message message = new MimeMessage(session);
+            message.setFrom(new InternetAddress(userName)); // Remetente
+            message.setRecipients(Message.RecipientType.TO, toUser); // Destinatário
+            message.setSubject("Chegou o e-mail enviado com java"); // Assunto do email
+            message.setText("Olá! Email enviado com java para testes"); // Corpo do texto
+
+            Transport.send(message);
 
         }
         catch (Exception e) {
