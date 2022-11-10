@@ -4,9 +4,13 @@ import com.itextpdf.text.Document;
 import com.itextpdf.text.Paragraph;
 import com.itextpdf.text.pdf.PdfWriter;
 
+import javax.activation.DataHandler;
 import javax.mail.*;
 import javax.mail.internet.InternetAddress;
+import javax.mail.internet.MimeBodyPart;
 import javax.mail.internet.MimeMessage;
+import javax.mail.internet.MimeMultipart;
+import javax.mail.util.ByteArrayDataSource;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
@@ -58,6 +62,56 @@ public class EnviaEmail {
         else {
             message.setText(textoEmail); // Corpo do texto
         }
+
+        Transport.send(message);
+    }
+
+    public void enviarEmailAnexo(boolean envioHtml) throws Exception {
+        Properties properties = new Properties();
+
+        properties.put("mail.smtp.ssl.trust", "*");
+        properties.put("mail.smtp.auth", "true"); // Autorização
+        properties.put("mail.smtp.starttls", "true"); // Autenticação
+        properties.put("mail.smtp.host", "smtp.gmail.com"); // Servidor Gmail Google
+        properties.put("mail.smtp.port", "465"); // Porta do servidor
+        properties.put("mail.smtp.socketFactory.port", "465"); // Especifica a porta a ser conectada pelo socket
+        properties.put("mail.smtp.socketFactory.class", "javax.net.ssl.SSLSocketFactory"); // Classe socket de conexão ao SMTP
+
+        Session session = Session.getInstance(properties, new Authenticator() {
+            @Override
+            protected PasswordAuthentication getPasswordAuthentication() {
+                return new PasswordAuthentication(userName, senha);
+            }
+        });
+
+        Address[] toUser = InternetAddress.parse(listaDestinatarios);
+        Message message = new MimeMessage(session);
+        message.setFrom(new InternetAddress(userName, nomeRemetente)); // Remetente, o primeiro parâmetro é o email, e o segundo para mostrar o nome em vez do endereço de email
+        message.setRecipients(Message.RecipientType.TO, toUser); // Destinatário
+        message.setSubject(assuntoEmail); // Assunto do email
+
+        // Parte 1 do email que é o texto e a descrição do email
+        MimeBodyPart corpoEmail = new MimeBodyPart();
+
+        if (envioHtml) {
+            corpoEmail.setContent(textoEmail, "text/html; charset=utf-8");
+        }
+        else {
+            corpoEmail.setText(textoEmail); // Corpo do texto
+        }
+
+        // Parte 2 do email que são os anexos em pdf
+        MimeBodyPart anexoEmail = new MimeBodyPart();
+
+        // Onde é passado o simulador de pdf, pode passar o arquivo gravado no banco de dados ou de outro local também
+        anexoEmail.setDataHandler(new DataHandler(new ByteArrayDataSource(simuladorDePDF(), "application/pdf")));
+        anexoEmail.setFileName("anexo.pdf");
+
+        Multipart multipart = new MimeMultipart();
+        multipart.addBodyPart(corpoEmail);
+        multipart.addBodyPart(anexoEmail);
+
+        message.setContent(multipart);
 
         Transport.send(message);
     }

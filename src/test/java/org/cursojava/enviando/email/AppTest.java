@@ -19,6 +19,6 @@ public class AppTest {
 
 
         EnviaEmail enviaEmail = new EnviaEmail("email@gmail.com", "Remetente Email", "Assunto", stringBuilderTextoEmail.toString());
-        enviaEmail.enviarEmail(true); // True ou False para mandar um email customizado com html
+        enviaEmail.enviarEmailAnexo(true); // True ou False para mandar um email customizado com html
     }
 }
