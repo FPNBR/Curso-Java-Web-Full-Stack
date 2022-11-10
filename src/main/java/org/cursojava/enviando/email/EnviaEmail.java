@@ -1,8 +1,15 @@
 package org.cursojava.enviando.email;
 
+import com.itextpdf.text.Document;
+import com.itextpdf.text.Paragraph;
+import com.itextpdf.text.pdf.PdfWriter;
+
 import javax.mail.*;
 import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
 import java.util.Properties;
 
 public class EnviaEmail {
@@ -53,5 +60,16 @@ public class EnviaEmail {
         }
 
         Transport.send(message);
+    }
+
+    private FileInputStream simuladorDePDF() throws Exception {
+        Document document = new Document();
+        File file = new File("anexo.pdf");
+        file.createNewFile();
+        PdfWriter.getInstance(document, new FileOutputStream(file));
+        document.open();
+        document.add(new Paragraph("Conteúdo do PDF anexo com Java Mail"));
+        document.close();
+        return new FileInputStream(file);
     }
 }
