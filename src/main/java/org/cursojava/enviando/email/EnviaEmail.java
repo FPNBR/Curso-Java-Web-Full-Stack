@@ -21,7 +21,7 @@ public class EnviaEmail {
         this.textoEmail = textoEmail;
     }
 
-    public void enviarEmail() throws Exception {
+    public void enviarEmail(boolean envioHtml) throws Exception {
         Properties properties = new Properties();
 
         properties.put("mail.smtp.ssl.trust", "*");
@@ -44,7 +44,13 @@ public class EnviaEmail {
         message.setFrom(new InternetAddress(userName, nomeRemetente)); // Remetente, o primeiro parâmetro é o email, e o segundo para mostrar o nome em vez do endereço de email
         message.setRecipients(Message.RecipientType.TO, toUser); // Destinatário
         message.setSubject(assuntoEmail); // Assunto do email
-        message.setText(textoEmail); // Corpo do texto
+
+        if (envioHtml) {
+            message.setContent(textoEmail, "text/html; charset=utf-8");
+        }
+        else {
+            message.setText(textoEmail); // Corpo do texto
+        }
 
         Transport.send(message);
     }
