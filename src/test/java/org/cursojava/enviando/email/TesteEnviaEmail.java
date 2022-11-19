@@ -2,7 +2,7 @@ package org.cursojava.enviando.email;
 
 import org.junit.Test;
 
-public class AppTest {
+public class TesteEnviaEmail {
 
     @Test
     public void testeEmail() throws Exception {
