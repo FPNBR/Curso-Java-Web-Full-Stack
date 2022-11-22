@@ -40,7 +40,7 @@ public class TesteConexaoBanco {
         UsuarioDAO usuarioDAO = new UsuarioDAO();
 
         try {
-            Usuario usuario = usuarioDAO.buscarUsuario(5L);
+            Usuario usuario = usuarioDAO.buscarUsuario(7L);
             System.out.println(usuario);
         }
         catch (Exception e) {
@@ -67,7 +67,7 @@ public class TesteConexaoBanco {
         UsuarioDAO usuarioDAO = new UsuarioDAO();
 
         try {
-            usuarioDAO.deletarUsuario(6L);
+            usuarioDAO.deletarUsuario(7L);
         }
         catch (Exception e) {
             e.printStackTrace();
@@ -85,15 +85,27 @@ public class TesteConexaoBanco {
     }
 
     @Test
-    public void listarUsuarioFone() { // Método que usa Inner Join do SQL para combinar a tabela de usuários e seus telefones em uma só
+    public void buscarUsuarioFone() { // Método que usa Inner Join do SQL para combinar a tabela de usuários e seus telefones em uma só
         UsuarioDAO usuarioDAO = new UsuarioDAO();
 
         try {
-            List<InnerJoinUsuarioFone> list = usuarioDAO.listarUsuarioFone(7L);
+            List<InnerJoinUsuarioFone> list = usuarioDAO.buscarUsuarioFone(7L);
             for (InnerJoinUsuarioFone innerJoinUsuarioFone : list) {
                 System.out.println(innerJoinUsuarioFone);
                 System.out.println("-------------------------------");
             }
+        }
+        catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    @Test
+    public void deletarUsuarioFone () { // Método para deletar um usuário e seus telefones (efeito cascata)
+        UsuarioDAO usuarioDAO = new UsuarioDAO();
+
+        try {
+            usuarioDAO.deletarUsuarioFone(7L);
         }
         catch (Exception e) {
             e.printStackTrace();

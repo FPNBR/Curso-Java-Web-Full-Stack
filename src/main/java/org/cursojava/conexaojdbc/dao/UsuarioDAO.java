@@ -45,8 +45,8 @@ public class UsuarioDAO {
 
         String sql = "select * from usuarios";
 
-        PreparedStatement prepareStatement = connection.prepareStatement(sql);
-        ResultSet resultado = prepareStatement.executeQuery();
+        PreparedStatement preparedStatement = connection.prepareStatement(sql);
+        ResultSet resultado = preparedStatement.executeQuery();
 
         while (resultado.next()) { // Retorna todos os usuários do banco de dados
             Usuario usuario = new Usuario();
@@ -63,8 +63,8 @@ public class UsuarioDAO {
 
         String sql = "select * from usuarios where id = " + id;
 
-        PreparedStatement prepareStatement = connection.prepareStatement(sql);
-        ResultSet resultado = prepareStatement.executeQuery();
+        PreparedStatement preparedStatement = connection.prepareStatement(sql);
+        ResultSet resultado = preparedStatement.executeQuery();
 
         while (resultado.next()) { // Retorna apenas um ou nenhum usuário do banco de dados
             usuario.setId(resultado.getLong("id"));
@@ -80,9 +80,9 @@ public class UsuarioDAO {
     public void atualizarNomeUsuario(Usuario usuario) {
         try {
             String sql = "update usuarios set nome = ? where id = " + usuario.getId();
-            PreparedStatement prepareStatement = connection.prepareStatement(sql);
-            prepareStatement.setString(1, usuario.getNome());
-            prepareStatement.execute();
+            PreparedStatement preparedStatement = connection.prepareStatement(sql);
+            preparedStatement.setString(1, usuario.getNome());
+            preparedStatement.execute();
             connection.commit();
         }
         catch (Exception e) {
@@ -99,8 +99,8 @@ public class UsuarioDAO {
     public void deletarUsuario(Long id) throws Exception {
         try {
             String sql = "delete from usuarios where id = " + id;
-            PreparedStatement prepareStatement = connection.prepareStatement(sql);
-            prepareStatement.execute();
+            PreparedStatement preparedStatement = connection.prepareStatement(sql);
+            preparedStatement.execute();
             connection.commit();
         }
         catch (Exception e) {
@@ -114,16 +114,16 @@ public class UsuarioDAO {
         }
     }
 
-    public List<InnerJoinUsuarioFone> listarUsuarioFone(Long idUser) throws Exception {
+    public List<InnerJoinUsuarioFone> buscarUsuarioFone(Long id) throws Exception {
         List<InnerJoinUsuarioFone> list = new ArrayList<>();
 
         String sql = " select nome, email, numero from telefones as fone ";
         sql += " inner join usuarios as userp ";
         sql += " on fone.usuario = userp.id ";
-        sql += " where userp.id = " + idUser;
+        sql += " where userp.id = " + id;
 
-        PreparedStatement prepareStatement = connection.prepareStatement(sql);
-        ResultSet resultado = prepareStatement.executeQuery();
+        PreparedStatement preparedStatement = connection.prepareStatement(sql);
+        ResultSet resultado = preparedStatement.executeQuery();
 
         while (resultado.next()) { // Retorna apenas um ou nenhum usuário e seus telefones do banco de dados
             InnerJoinUsuarioFone innerJoinUsuarioFone = new InnerJoinUsuarioFone();
@@ -147,6 +147,28 @@ public class UsuarioDAO {
             preparedStatement.setLong(3, telefone.getUsuario());
             preparedStatement.execute();
             connection.commit(); // Salva no banco
+        }
+        catch (Exception e) {
+            e.printStackTrace();
+            try {
+                connection.rollback();
+            }
+            catch (SQLException e1) {
+                e1.printStackTrace();
+            }
+        }
+    }
+
+    public void deletarUsuarioFone(Long id) throws Exception {
+        try {
+            String sqlFone = "delete from telefones where usuario = " + id;
+            String sqlUsuario = "delete from usuarios where id = " + id;
+            PreparedStatement preparedStatement = connection.prepareStatement(sqlFone);
+            preparedStatement.executeUpdate();
+            connection.commit();
+            preparedStatement = connection.prepareStatement(sqlUsuario);
+            preparedStatement.executeUpdate();
+            connection.commit();
         }
         catch (Exception e) {
             e.printStackTrace();

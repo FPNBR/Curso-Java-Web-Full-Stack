@@ -31,7 +31,7 @@ public class InnerJoinUsuarioFone {
 
     @Override
     public String toString() {
-        return "BeanUserFone{" +
+        return "InnerJoinUsuarioFone{" +
                 "nome='" + nome + '\'' +
                 ", email='" + email + '\'' +
                 ", numero='" + numero + '\'' +
