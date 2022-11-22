@@ -1,29 +1,30 @@
 package org.cursojava.conexaojdbc;
 
 import org.cursojava.conexaojdbc.dao.UsuarioDAO;
+import org.cursojava.conexaojdbc.model.Telefone;
 import org.cursojava.conexaojdbc.model.Usuario;
 import org.junit.Test;
 
+import java.sql.SQLException;
 import java.util.List;
 
 public class TesteConexaoBanco {
 
     @Test
-    public void insertBanco() { // Método insert, salvar dados no banco de dados
+    public void insertUsuario() { // Método insert, salvar usuário no banco de dados
         UsuarioDAO usuarioDAO = new UsuarioDAO();
         Usuario usuario = new Usuario();
-
-        usuario.setNome("Paulo");
-        usuario.setEmail("paulo@gmail.com");
-        usuarioDAO.salvar(usuario);
+        usuario.setNome("João");
+        usuario.setEmail("joao@gmail.com");
+        usuarioDAO.criarUsuario(usuario);
     }
 
     @Test
-    public void listarBanco() { // Método para listar todos os dados no banco de dados
+    public void listarUsuario() { // Método para listar todos os usuários no banco de dados
         UsuarioDAO usuarioDAO = new UsuarioDAO();
 
         try {
-            List<Usuario> list = usuarioDAO.listar();
+            List<Usuario> list = usuarioDAO.listarUsuario();
             for (Usuario usuario : list) {
                 System.out.println(usuario);
                 System.out.println("-------------------------------");
@@ -35,11 +36,11 @@ public class TesteConexaoBanco {
     }
 
     @Test
-    public void buscarBanco () { // Método para retornar um usuário no banco de dados
+    public void buscarUsuario() { // Método para retornar um usuário selecionado no banco de dados
         UsuarioDAO usuarioDAO = new UsuarioDAO();
 
         try {
-            Usuario usuario = usuarioDAO.buscar(1L);
+            Usuario usuario = usuarioDAO.buscarUsuario(5L);
             System.out.println(usuario);
         }
         catch (Exception e) {
@@ -48,13 +49,13 @@ public class TesteConexaoBanco {
     }
 
     @Test
-    public void atualizarBanco () { // Método para atualizar o nome do usuário no banco de dados
+    public void atualizarUsuario () { // Método para atualizar o nome do usuário no banco de dados
         UsuarioDAO usuarioDAO = new UsuarioDAO();
 
         try {
-            Usuario usuario = usuarioDAO.buscar(1L);
+            Usuario usuario = usuarioDAO.buscarUsuario(7L);
             usuario.setNome("Nome alterado");
-            usuarioDAO.atualizarNome(usuario);
+            usuarioDAO.atualizarNomeUsuario(usuario);
         }
         catch (Exception e) {
             e.printStackTrace();
@@ -62,14 +63,24 @@ public class TesteConexaoBanco {
     }
 
     @Test
-    public void deletarBanco () { // Método para deletar um usuário no banco de dados
+    public void deletarUsuario () { // Método para deletar um usuário no banco de dados
         UsuarioDAO usuarioDAO = new UsuarioDAO();
 
         try {
-            usuarioDAO.deletar(6L);
+            usuarioDAO.deletarUsuario(6L);
         }
         catch (Exception e) {
             e.printStackTrace();
         }
+    }
+
+    @Test
+    public void insertTelefone() {
+        UsuarioDAO usuarioDAO = new UsuarioDAO();
+        Telefone telefone = new Telefone();
+        telefone.setNumero("(83) 9 5555-5555");
+        telefone.setTipo("Celular");
+        telefone.setUsuario(15L);
+        usuarioDAO.salvarTelefone(telefone);
     }
 }

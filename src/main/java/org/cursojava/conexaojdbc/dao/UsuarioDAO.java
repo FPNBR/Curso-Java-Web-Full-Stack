@@ -1,6 +1,7 @@
 package org.cursojava.conexaojdbc.dao;
 
 import org.cursojava.conexaojdbc.SingleConnection;
+import org.cursojava.conexaojdbc.model.Telefone;
 import org.cursojava.conexaojdbc.model.Usuario;
 
 import java.sql.Connection;
@@ -18,27 +19,27 @@ public class UsuarioDAO {
         connection = SingleConnection.getConnection();
     }
 
-    public void salvar(Usuario usuario) {
+    public void criarUsuario(Usuario usuario) {
         try {
             String sql = "insert into usuarios (nome, email) values (?,?)";
-            PreparedStatement insert = connection.prepareStatement(sql);
-            insert.setString(1, usuario.getNome());
-            insert.setString(2, usuario.getEmail());
-            insert.execute();
+            PreparedStatement preparedStatement = connection.prepareStatement(sql);
+            preparedStatement.setString(1, usuario.getNome());
+            preparedStatement.setString(2, usuario.getEmail());
+            preparedStatement.execute();
             connection.commit(); // Salva no banco
         }
         catch (Exception e) {
+            e.printStackTrace();
             try {
                 connection.rollback();
             }
             catch (SQLException e1) {
                 e1.printStackTrace();
             }
-            e.printStackTrace();
         }
     }
 
-    public List<Usuario> listar() throws Exception {
+    public List<Usuario> listarUsuario() throws SQLException {
         List<Usuario> list = new ArrayList<>();
 
         String sql = "select * from usuarios";
@@ -56,7 +57,7 @@ public class UsuarioDAO {
         return list;
     }
 
-    public Usuario buscar(Long id) throws Exception {
+    public Usuario buscarUsuario(Long id) throws Exception {
         Usuario usuario = new Usuario();
 
         String sql = "select * from usuarios where id = " + id;
@@ -69,10 +70,13 @@ public class UsuarioDAO {
             usuario.setNome(resultado.getString("nome"));
             usuario.setEmail(resultado.getString("email"));
         }
+        if (usuario.getId() == null) {
+            throw new Exception("Usuário não encontrado");
+        }
         return usuario;
     }
 
-    public void atualizarNome(Usuario usuario) {
+    public void atualizarNomeUsuario(Usuario usuario) {
         try {
             String sql = "update usuarios set nome = ? where id = " + usuario.getId();
             PreparedStatement prepareStatement = connection.prepareStatement(sql);
@@ -81,17 +85,17 @@ public class UsuarioDAO {
             connection.commit();
         }
         catch (Exception e) {
+            e.printStackTrace();
             try {
                 connection.rollback();
             }
             catch (SQLException e1) {
                 e1.printStackTrace();
             }
-            e.printStackTrace();
         }
     }
 
-    public void deletar(Long id) throws Exception {
+    public void deletarUsuario(Long id) throws Exception {
         try {
             String sql = "delete from usuarios where id = " + id;
             PreparedStatement prepareStatement = connection.prepareStatement(sql);
@@ -99,13 +103,34 @@ public class UsuarioDAO {
             connection.commit();
         }
         catch (Exception e) {
+            e.printStackTrace();
             try {
                 connection.rollback();
             }
             catch (SQLException e1) {
                 e1.printStackTrace();
             }
+        }
+    }
+
+    public void salvarTelefone(Telefone telefone) {
+        try {
+            String sql = "insert into telefones (numero, tipo, usuario) values (?,?,?)";
+            PreparedStatement preparedStatement = connection.prepareStatement(sql);
+            preparedStatement.setString(1, telefone.getNumero());
+            preparedStatement.setString(2, telefone.getTipo());
+            preparedStatement.setLong(3, telefone.getUsuario());
+            preparedStatement.execute();
+            connection.commit(); // Salva no banco
+        }
+        catch (Exception e) {
             e.printStackTrace();
+            try {
+                connection.rollback();
+            }
+            catch (SQLException e1) {
+                e1.printStackTrace();
+            }
         }
     }
 }
