@@ -19,7 +19,7 @@ public class TesteConexaoBanco {
     }
 
     @Test
-    public void listarBanco() { // Método para listar todos os dados do banco de dados
+    public void listarBanco() { // Método para listar todos os dados no banco de dados
         UsuarioDAO usuarioDAO = new UsuarioDAO();
 
         try {
@@ -35,7 +35,7 @@ public class TesteConexaoBanco {
     }
 
     @Test
-    public void buscarBanco () { // Método para retornar um usuário do banco de dados
+    public void buscarBanco () { // Método para retornar um usuário no banco de dados
         UsuarioDAO usuarioDAO = new UsuarioDAO();
 
         try {
@@ -48,13 +48,25 @@ public class TesteConexaoBanco {
     }
 
     @Test
-    public void atualizarBanco () { // Método para atualizar um usuário do banco de dados
+    public void atualizarBanco () { // Método para atualizar o nome do usuário no banco de dados
         UsuarioDAO usuarioDAO = new UsuarioDAO();
 
         try {
             Usuario usuario = usuarioDAO.buscar(1L);
             usuario.setNome("Nome alterado");
             usuarioDAO.atualizarNome(usuario);
+        }
+        catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    @Test
+    public void deletarBanco () { // Método para deletar um usuário no banco de dados
+        UsuarioDAO usuarioDAO = new UsuarioDAO();
+
+        try {
+            usuarioDAO.deletar(6L);
         }
         catch (Exception e) {
             e.printStackTrace();

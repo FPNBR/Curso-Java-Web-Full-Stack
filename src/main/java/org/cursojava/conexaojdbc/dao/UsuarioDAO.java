@@ -43,8 +43,8 @@ public class UsuarioDAO {
 
         String sql = "select * from usuarios";
 
-        PreparedStatement statement = connection.prepareStatement(sql);
-        ResultSet resultado = statement.executeQuery();
+        PreparedStatement prepareStatement = connection.prepareStatement(sql);
+        ResultSet resultado = prepareStatement.executeQuery();
 
         while (resultado.next()) { // Retorna todos os usuários do banco de dados
             Usuario usuario = new Usuario();
@@ -57,27 +57,45 @@ public class UsuarioDAO {
     }
 
     public Usuario buscar(Long id) throws Exception {
-        Usuario usuarioRetorno = new Usuario();
+        Usuario usuario = new Usuario();
 
         String sql = "select * from usuarios where id = " + id;
 
-        PreparedStatement statement = connection.prepareStatement(sql);
-        ResultSet resultado = statement.executeQuery();
+        PreparedStatement prepareStatement = connection.prepareStatement(sql);
+        ResultSet resultado = prepareStatement.executeQuery();
 
         while (resultado.next()) { // Retorna apenas um ou nenhum usuário do banco de dados
-            usuarioRetorno.setId(resultado.getLong("id"));
-            usuarioRetorno.setNome(resultado.getString("nome"));
-            usuarioRetorno.setEmail(resultado.getString("email"));
+            usuario.setId(resultado.getLong("id"));
+            usuario.setNome(resultado.getString("nome"));
+            usuario.setEmail(resultado.getString("email"));
         }
-        return usuarioRetorno;
+        return usuario;
     }
 
     public void atualizarNome(Usuario usuario) {
         try {
             String sql = "update usuarios set nome = ? where id = " + usuario.getId();
-            PreparedStatement statement = connection.prepareStatement(sql);
-            statement.setString(1, usuario.getNome());
-            statement.execute();
+            PreparedStatement prepareStatement = connection.prepareStatement(sql);
+            prepareStatement.setString(1, usuario.getNome());
+            prepareStatement.execute();
+            connection.commit();
+        }
+        catch (Exception e) {
+            try {
+                connection.rollback();
+            }
+            catch (SQLException e1) {
+                e1.printStackTrace();
+            }
+            e.printStackTrace();
+        }
+    }
+
+    public void deletar(Long id) throws Exception {
+        try {
+            String sql = "delete from usuarios where id = " + id;
+            PreparedStatement prepareStatement = connection.prepareStatement(sql);
+            prepareStatement.execute();
             connection.commit();
         }
         catch (Exception e) {
