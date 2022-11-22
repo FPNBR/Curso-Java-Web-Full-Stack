@@ -1,11 +1,11 @@
 package org.cursojava.conexaojdbc;
 
 import org.cursojava.conexaojdbc.dao.UsuarioDAO;
+import org.cursojava.conexaojdbc.model.InnerJoinUsuarioFone;
 import org.cursojava.conexaojdbc.model.Telefone;
 import org.cursojava.conexaojdbc.model.Usuario;
 import org.junit.Test;
 
-import java.sql.SQLException;
 import java.util.List;
 
 public class TesteConexaoBanco {
@@ -82,5 +82,21 @@ public class TesteConexaoBanco {
         telefone.setTipo("Celular");
         telefone.setUsuario(15L);
         usuarioDAO.salvarTelefone(telefone);
+    }
+
+    @Test
+    public void listarUsuarioFone() { // Método que usa Inner Join do SQL para combinar a tabela de usuários e seus telefones em uma só
+        UsuarioDAO usuarioDAO = new UsuarioDAO();
+
+        try {
+            List<InnerJoinUsuarioFone> list = usuarioDAO.listarUsuarioFone(7L);
+            for (InnerJoinUsuarioFone innerJoinUsuarioFone : list) {
+                System.out.println(innerJoinUsuarioFone);
+                System.out.println("-------------------------------");
+            }
+        }
+        catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 }

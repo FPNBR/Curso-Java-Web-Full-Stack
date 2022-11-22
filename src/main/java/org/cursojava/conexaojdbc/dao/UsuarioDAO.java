@@ -1,6 +1,7 @@
 package org.cursojava.conexaojdbc.dao;
 
 import org.cursojava.conexaojdbc.SingleConnection;
+import org.cursojava.conexaojdbc.model.InnerJoinUsuarioFone;
 import org.cursojava.conexaojdbc.model.Telefone;
 import org.cursojava.conexaojdbc.model.Usuario;
 
@@ -111,6 +112,30 @@ public class UsuarioDAO {
                 e1.printStackTrace();
             }
         }
+    }
+
+    public List<InnerJoinUsuarioFone> listarUsuarioFone(Long idUser) throws Exception {
+        List<InnerJoinUsuarioFone> list = new ArrayList<>();
+
+        String sql = " select nome, email, numero from telefones as fone ";
+        sql += " inner join usuarios as userp ";
+        sql += " on fone.usuario = userp.id ";
+        sql += " where userp.id = " + idUser;
+
+        PreparedStatement prepareStatement = connection.prepareStatement(sql);
+        ResultSet resultado = prepareStatement.executeQuery();
+
+        while (resultado.next()) { // Retorna apenas um ou nenhum usuário e seus telefones do banco de dados
+            InnerJoinUsuarioFone innerJoinUsuarioFone = new InnerJoinUsuarioFone();
+            innerJoinUsuarioFone.setNome(resultado.getString("nome"));
+            innerJoinUsuarioFone.setEmail(resultado.getString("email"));
+            innerJoinUsuarioFone.setNumero(resultado.getString("numero"));
+            list.add(innerJoinUsuarioFone);
+        }
+        if (list.isEmpty()) {
+            throw new Exception("Usuário não encontrado");
+        }
+        return list;
     }
 
     public void salvarTelefone(Telefone telefone) {
