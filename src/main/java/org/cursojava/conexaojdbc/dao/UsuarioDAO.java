@@ -20,11 +20,10 @@ public class UsuarioDAO {
 
     public void salvar(Usuario usuario) {
         try {
-            String sql = "insert into usuarios (id, nome, email) values (?,?,?)";
+            String sql = "insert into usuarios (nome, email) values (?,?)";
             PreparedStatement insert = connection.prepareStatement(sql);
-            insert.setLong(1, usuario.getId());
-            insert.setString(2, usuario.getNome());
-            insert.setString(3, usuario.getEmail());
+            insert.setString(1, usuario.getNome());
+            insert.setString(2, usuario.getEmail());
             insert.execute();
             connection.commit(); // Salva no banco
         }

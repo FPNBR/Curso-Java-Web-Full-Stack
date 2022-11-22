@@ -13,7 +13,6 @@ public class TesteConexaoBanco {
         UsuarioDAO usuarioDAO = new UsuarioDAO();
         Usuario usuario = new Usuario();
 
-        usuario.setId(4L);
         usuario.setNome("Paulo");
         usuario.setEmail("paulo@gmail.com");
         usuarioDAO.salvar(usuario);
