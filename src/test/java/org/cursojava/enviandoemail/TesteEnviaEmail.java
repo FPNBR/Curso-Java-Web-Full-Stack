@@ -1,4 +1,4 @@
-package org.cursojava.enviando.email;
+package org.cursojava.enviandoemail;
 
 import org.junit.Test;
 

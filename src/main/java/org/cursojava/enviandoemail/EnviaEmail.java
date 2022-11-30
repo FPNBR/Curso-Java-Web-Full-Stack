@@ -1,4 +1,4 @@
-package org.cursojava.enviando.email;
+package org.cursojava.enviandoemail;
 
 import com.itextpdf.text.Document;
 import com.itextpdf.text.Paragraph;
