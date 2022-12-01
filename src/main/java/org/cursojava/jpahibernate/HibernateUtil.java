@@ -22,7 +22,7 @@ public class HibernateUtil {
         }
     }
 
-    public static EntityManager entityManager() {
+    public static EntityManager getEntityManager() {
         return entityManagerFactory.createEntityManager(); // Fornece a parte de persistência
     }
 }
