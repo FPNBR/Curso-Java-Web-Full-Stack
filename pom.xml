@@ -42,6 +42,12 @@
         </dependency>
 
         <dependency>
+            <groupId>org.apache.logging.log4j</groupId>
+            <artifactId>log4j-core</artifactId>
+            <version>2.19.0</version>
+        </dependency>
+
+        <dependency>
             <groupId>com.sun.mail</groupId>
             <artifactId>javax.mail</artifactId>
             <version>1.6.2</version>
@@ -70,6 +76,7 @@
             <artifactId>hibernate-entitymanager</artifactId>
             <version>5.6.14.Final</version>
         </dependency>
+
     </dependencies>
     
 </project>
