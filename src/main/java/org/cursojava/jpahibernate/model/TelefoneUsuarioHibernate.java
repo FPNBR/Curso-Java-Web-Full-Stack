@@ -1,9 +1,10 @@
+/*
 package org.cursojava.jpahibernate.model;
 
 import javax.persistence.*;
 
 @Entity
-public class TelefoneUsuario {
+public class TelefoneUsuarioHibernate {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
@@ -15,7 +16,7 @@ public class TelefoneUsuario {
     private String numero;
 
     @ManyToOne(optional = false, fetch = FetchType.EAGER)
-    private Usuario usuario;
+    private UsuarioHibernate usuarioHibernate;
 
     public Long getId() {
         return id;
@@ -41,11 +42,12 @@ public class TelefoneUsuario {
         this.numero = numero;
     }
 
-    public Usuario getUsuario() {
-        return usuario;
+    public UsuarioHibernate getUsuario() {
+        return usuarioHibernate;
     }
 
-    public void setUsuario(Usuario usuario) {
-        this.usuario = usuario;
+    public void setUsuario(UsuarioHibernate usuarioHibernate) {
+        this.usuarioHibernate = usuarioHibernate;
     }
 }
+*/

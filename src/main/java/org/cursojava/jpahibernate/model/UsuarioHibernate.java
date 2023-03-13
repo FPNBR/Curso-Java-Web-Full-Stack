@@ -1,3 +1,4 @@
+/*
 package org.cursojava.jpahibernate.model;
 
 import javax.persistence.*;
@@ -5,10 +6,10 @@ import java.util.List;
 
 @Entity
 @NamedQueries({
-        @NamedQuery(name = "Usuario.buscarTodos", query = "select u from Usuario u"),
-        @NamedQuery(name = "Usuario.buscarPorNome", query = "select u from Usuario u where u.nome = :nome")
+        @NamedQuery(name = "Usuario.buscarTodos", query = "select u from UsuarioHibernate u"),
+        @NamedQuery(name = "Usuario.buscarPorNome", query = "select u from UsuarioHibernate u where u.nome = :nome")
 })
-public class Usuario {
+public class UsuarioHibernate {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
@@ -19,8 +20,8 @@ public class Usuario {
     private String senha;
     private int idade;
 
-    @OneToMany(mappedBy = "usuario", fetch = FetchType.EAGER)
-    private List<TelefoneUsuario> telefoneUsuarioList;
+    @OneToMany(mappedBy = "usuarioHibernate", fetch = FetchType.EAGER)
+    private List<TelefoneUsuarioHibernate> telefoneUsuarioHibernateList;
 
     public Long getId() {
         return id;
@@ -78,17 +79,17 @@ public class Usuario {
         this.idade = idade;
     }
 
-    public List<TelefoneUsuario> getTelefoneUsuarioList() {
-        return telefoneUsuarioList;
+    public List<TelefoneUsuarioHibernate> getTelefoneUsuarioHibernateList() {
+        return telefoneUsuarioHibernateList;
     }
 
-    public void setTelefoneUsuarioList(List<TelefoneUsuario> telefoneUsuarioList) {
-        this.telefoneUsuarioList = telefoneUsuarioList;
+    public void setTelefoneUsuarioHibernateList(List<TelefoneUsuarioHibernate> telefoneUsuarioHibernateList) {
+        this.telefoneUsuarioHibernateList = telefoneUsuarioHibernateList;
     }
 
     @Override
     public String toString() {
-        return "Usuario{" +
+        return "UsuarioHibernate{" +
                 "id=" + id +
                 ", nome='" + nome + '\'' +
                 ", sobrenome='" + sobrenome + '\'' +
@@ -99,3 +100,4 @@ public class Usuario {
                 '}';
     }
 }
+*/

@@ -1,9 +1,9 @@
+/*
 package org.cursojava.jpahibernate;
 
-import org.cursojava.arquivos.Pessoa;
 import org.cursojava.jpahibernate.model.DAO.DaoGenerico;
-import org.cursojava.jpahibernate.model.TelefoneUsuario;
-import org.cursojava.jpahibernate.model.Usuario;
+import org.cursojava.jpahibernate.model.TelefoneUsuarioHibernate;
+import org.cursojava.jpahibernate.model.UsuarioHibernate;
 import org.junit.Test;
 
 import java.util.List;
@@ -11,160 +11,161 @@ import java.util.List;
 public class TesteHibernate {
     @Test
     public void testeHibernateUtil() {
-        DaoGenerico<Usuario> daoGenerico = new DaoGenerico<>();
+        DaoGenerico<UsuarioHibernate> daoGenerico = new DaoGenerico<>();
 
-        Usuario usuario = new Usuario();
-        usuario.setIdade(1);
-        usuario.setNome("Teste 1");
-        usuario.setSobrenome("Testando");
-        usuario.setLogin("teste1");
-        usuario.setSenha("teste1");
-        usuario.setEmail("teste1@gmail.com");
+        UsuarioHibernate usuarioHibernate = new UsuarioHibernate();
+        usuarioHibernate.setIdade(1);
+        usuarioHibernate.setNome("Teste 1");
+        usuarioHibernate.setSobrenome("Testando");
+        usuarioHibernate.setLogin("teste1");
+        usuarioHibernate.setSenha("teste1");
+        usuarioHibernate.setEmail("teste1@gmail.com");
 
-        daoGenerico.salvarUsuario(usuario);
+        daoGenerico.salvarUsuario(usuarioHibernate);
     }
 
     @Test
     public void testeBuscarUsuario() {
-        DaoGenerico<Usuario> daoGenerico = new DaoGenerico<>();
-        Usuario usuario = new Usuario();
-        usuario.setId(1L);
+        DaoGenerico<UsuarioHibernate> daoGenerico = new DaoGenerico<>();
+        UsuarioHibernate usuarioHibernate = new UsuarioHibernate();
+        usuarioHibernate.setId(1L);
 
-        usuario = daoGenerico.pesquisarUsuario(usuario);
-        System.out.println(usuario);
+        usuarioHibernate = daoGenerico.pesquisarUsuario(usuarioHibernate);
+        System.out.println(usuarioHibernate);
     }
 
     @Test
     public void testeBuscarUsuario2() {
-        DaoGenerico<Usuario> daoGenerico = new DaoGenerico<>();
+        DaoGenerico<UsuarioHibernate> daoGenerico = new DaoGenerico<>();
 
-        Usuario usuario = daoGenerico.pesquisarUsuario(1L, Usuario.class);
-        System.out.println(usuario);
+        UsuarioHibernate usuarioHibernate = daoGenerico.pesquisarUsuario(1L, UsuarioHibernate.class);
+        System.out.println(usuarioHibernate);
     }
 
     @Test
     public void testeAtualizarUsuario() {
-        DaoGenerico<Usuario> daoGenerico = new DaoGenerico<>();
+        DaoGenerico<UsuarioHibernate> daoGenerico = new DaoGenerico<>();
 
-        Usuario usuario = daoGenerico.pesquisarUsuario(1L, Usuario.class);
-        usuario.setIdade(99);
-        usuario.setNome("Nome atualizado");
+        UsuarioHibernate usuarioHibernate = daoGenerico.pesquisarUsuario(1L, UsuarioHibernate.class);
+        usuarioHibernate.setIdade(99);
+        usuarioHibernate.setNome("Nome atualizado");
 
-        usuario = daoGenerico.salvarAtualizarUsuario(usuario);
-        System.out.println(usuario);
+        usuarioHibernate = daoGenerico.salvarAtualizarUsuario(usuarioHibernate);
+        System.out.println(usuarioHibernate);
     }
 
     @Test
     public void testeDeletarUsuario() {
-        DaoGenerico<Usuario> daoGenerico = new DaoGenerico<>();
-        Usuario usuario = daoGenerico.pesquisarUsuario(1L, Usuario.class);
+        DaoGenerico<UsuarioHibernate> daoGenerico = new DaoGenerico<>();
+        UsuarioHibernate usuarioHibernate = daoGenerico.pesquisarUsuario(1L, UsuarioHibernate.class);
 
-        daoGenerico.deletarUsuarioPorId(usuario);
+        daoGenerico.deletarUsuarioPorId(usuarioHibernate);
     }
 
     @Test
     public void testeListarUsuario() {
-        DaoGenerico<Usuario> daoGenerico = new DaoGenerico<>();
+        DaoGenerico<UsuarioHibernate> daoGenerico = new DaoGenerico<>();
 
-        List<Usuario> usuarioList = daoGenerico.listarUsuarios(Usuario.class);
-        for (Usuario usuario : usuarioList) {
-            System.out.println(usuario);
+        List<UsuarioHibernate> usuarioHibernateList = daoGenerico.listarUsuarios(UsuarioHibernate.class);
+        for (UsuarioHibernate usuarioHibernate : usuarioHibernateList) {
+            System.out.println(usuarioHibernate);
             System.out.println("----------------------------------------------");
         }
     }
 
     @Test
     public void testeQueryList() {
-        DaoGenerico<Usuario> daoGenerico = new DaoGenerico<>();
-        List<Usuario> usuarioList = daoGenerico.getEntityManager().createQuery(" from Usuario where nome = 'Teste 1'").getResultList();
+        DaoGenerico<UsuarioHibernate> daoGenerico = new DaoGenerico<>();
+        List<UsuarioHibernate> usuarioHibernateList = daoGenerico.getEntityManager().createQuery(" from UsuarioHibernate where nome = 'Teste 1'").getResultList();
 
-        for (Usuario usuario : usuarioList) {
-            System.out.println(usuario);
+        for (UsuarioHibernate usuarioHibernate : usuarioHibernateList) {
+            System.out.println(usuarioHibernate);
         }
     }
 
     @Test
     public void testeQueryListMaxResult() {
-        DaoGenerico<Usuario> daoGenerico = new DaoGenerico<>();
-        List<Usuario> usuarioList = daoGenerico.getEntityManager().createQuery(" from Usuario order by id")
+        DaoGenerico<UsuarioHibernate> daoGenerico = new DaoGenerico<>();
+        List<UsuarioHibernate> usuarioHibernateList = daoGenerico.getEntityManager().createQuery(" from UsuarioHibernate order by id")
                 .setMaxResults(2)
                 .getResultList();
 
-        for (Usuario usuario : usuarioList) {
-            System.out.println(usuario);
+        for (UsuarioHibernate usuarioHibernate : usuarioHibernateList) {
+            System.out.println(usuarioHibernate);
         }
     }
 
     @Test
     public void testeQueryListParameter() {
-        DaoGenerico<Usuario> daoGenerico = new DaoGenerico<>();
+        DaoGenerico<UsuarioHibernate> daoGenerico = new DaoGenerico<>();
 
-        List<Usuario> usuarioList = daoGenerico.getEntityManager().createQuery(" from Usuario where nome = :nome or sobrenome = :sobrenome")
+        List<UsuarioHibernate> usuarioHibernateList = daoGenerico.getEntityManager().createQuery(" from UsuarioHibernate where nome = :nome or sobrenome = :sobrenome")
                 .setParameter("nome", "Teste 1")
                 .setParameter("sobrenome", "Testando 1")
                 .getResultList();
 
-        for (Usuario usuario : usuarioList) {
-            System.out.println(usuario);
+        for (UsuarioHibernate usuarioHibernate : usuarioHibernateList) {
+            System.out.println(usuarioHibernate);
         }
     }
 
     @Test
     public void testeQuerySomaIdade() {
-        DaoGenerico<Usuario> daoGenerico = new DaoGenerico<>();
+        DaoGenerico<UsuarioHibernate> daoGenerico = new DaoGenerico<>();
 
-        Long somaIdade = (Long) daoGenerico.getEntityManager().createQuery("select  sum(u.idade) from Usuario u ").getSingleResult();
+        Long somaIdade = (Long) daoGenerico.getEntityManager().createQuery("select  sum(u.idade) from UsuarioHibernate u ").getSingleResult();
 
         System.out.println("A soma de todas as idades é -> " + somaIdade);
     }
 
     @Test
     public void testeNamedQuery1() {
-        DaoGenerico<Usuario> daoGenerico = new DaoGenerico<>();
+        DaoGenerico<UsuarioHibernate> daoGenerico = new DaoGenerico<>();
 
-        List<Usuario> usuarioList = daoGenerico.getEntityManager().createNamedQuery("Usuario.buscarTodos").getResultList();
+        List<UsuarioHibernate> usuarioHibernateList = daoGenerico.getEntityManager().createNamedQuery("Usuario.buscarTodos").getResultList();
 
-        for (Usuario usuario : usuarioList) {
-            System.out.println(usuario);
+        for (UsuarioHibernate usuarioHibernate : usuarioHibernateList) {
+            System.out.println(usuarioHibernate);
         }
     }
 
     @Test
     public void testeNamedQuery2() {
-        DaoGenerico<Usuario> daoGenerico = new DaoGenerico<>();
+        DaoGenerico<UsuarioHibernate> daoGenerico = new DaoGenerico<>();
 
-        List<Usuario> usuarioList = daoGenerico.getEntityManager().createNamedQuery("Usuario.buscarPorNome")
+        List<UsuarioHibernate> usuarioHibernateList = daoGenerico.getEntityManager().createNamedQuery("Usuario.buscarPorNome")
                 .setParameter("nome", "Teste 1")
                 .getResultList();
 
-        for (Usuario usuario : usuarioList) {
-            System.out.println(usuario);
+        for (UsuarioHibernate usuarioHibernate : usuarioHibernateList) {
+            System.out.println(usuarioHibernate);
         }
     }
 
     @Test
     public void testeSalvarTelefone() {
         DaoGenerico daoGenerico = new DaoGenerico<>();
-        Usuario usuario = (Usuario) daoGenerico.pesquisarUsuario(2L, Usuario.class);
+        UsuarioHibernate usuarioHibernate = (UsuarioHibernate) daoGenerico.pesquisarUsuario(2L, UsuarioHibernate.class);
 
-        TelefoneUsuario telefoneUsuario = new TelefoneUsuario();
-        telefoneUsuario.setTipo("Casa");
-        telefoneUsuario.setNumero("999999998");
-        telefoneUsuario.setUsuario(usuario);
+        TelefoneUsuarioHibernate telefoneUsuarioHibernate = new TelefoneUsuarioHibernate();
+        telefoneUsuarioHibernate.setTipo("Casa");
+        telefoneUsuarioHibernate.setNumero("999999998");
+        telefoneUsuarioHibernate.setUsuario(usuarioHibernate);
 
-        daoGenerico.salvarUsuario(telefoneUsuario);
+        daoGenerico.salvarUsuario(telefoneUsuarioHibernate);
     }
 
     @Test
     public void testeConsultarTelefones() {
         DaoGenerico daoGenerico = new DaoGenerico<>();
-        Usuario usuario = (Usuario) daoGenerico.pesquisarUsuario(2L, Usuario.class);
+        UsuarioHibernate usuarioHibernate = (UsuarioHibernate) daoGenerico.pesquisarUsuario(2L, UsuarioHibernate.class);
 
-        for (TelefoneUsuario telefoneUsuario : usuario.getTelefoneUsuarioList()) {
-            System.out.println(telefoneUsuario.getNumero());
-            System.out.println(telefoneUsuario.getTipo());
-            System.out.println(telefoneUsuario.getUsuario().getNome());
+        for (TelefoneUsuarioHibernate telefoneUsuarioHibernate : usuarioHibernate.getTelefoneUsuarioHibernateList()) {
+            System.out.println(telefoneUsuarioHibernate.getNumero());
+            System.out.println(telefoneUsuarioHibernate.getTipo());
+            System.out.println(telefoneUsuarioHibernate.getUsuario().getNome());
             System.out.println("---------------------------------------");
         }
     }
 }
+*/

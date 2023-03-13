@@ -1,3 +1,4 @@
+/*
 package org.cursojava.jpahibernate.model.DAO;
 
 import org.cursojava.jpahibernate.util.HibernateUtil;
@@ -60,3 +61,4 @@ public class DaoGenerico<E> {
         return entityManager;
     }
 }
+*/

@@ -44,7 +44,7 @@ public class Usuario implements Serializable {
 
     @Override
     public String toString() {
-        return "Usuario{" +
+        return "UsuarioHibernate{" +
                 "nome='" + nome + '\'' +
                 ", login='" + login + '\'' +
                 ", senha='" + senha + '\'' +
