@@ -1,8 +1,11 @@
 package org.cursojava.jpahibernate;
 
+import org.cursojava.arquivos.Pessoa;
 import org.cursojava.jpahibernate.model.DAO.DaoGenerico;
 import org.cursojava.jpahibernate.model.Usuario;
 import org.junit.Test;
+
+import java.util.List;
 
 public class TesteHibernate {
     @Test
@@ -56,5 +59,16 @@ public class TesteHibernate {
         Usuario usuario = daoGenerico.pesquisarUsuario(1L, Usuario.class);
 
         daoGenerico.deletarUsuarioPorId(usuario);
+    }
+
+    @Test
+    public void testeListarUsuario() {
+        DaoGenerico<Usuario> daoGenerico = new DaoGenerico<>();
+
+        List<Usuario> usuarioList = daoGenerico.listarUsuarios(Usuario.class);
+        for (Usuario usuario : usuarioList) {
+            System.out.println(usuario);
+            System.out.println("----------------------------------------------");
+        }
     }
 }

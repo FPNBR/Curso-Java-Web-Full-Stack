@@ -4,6 +4,7 @@ import org.cursojava.jpahibernate.util.HibernateUtil;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityTransaction;
+import java.util.List;
 
 public class DaoGenerico<E> {
     private EntityManager entityManager = HibernateUtil.getEntityManager();
@@ -43,5 +44,15 @@ public class DaoGenerico<E> {
 
         entityManager.createNativeQuery("delete from " + entidade.getClass().getSimpleName().toLowerCase() + " where id =" + id).executeUpdate();
         entityTransaction.commit();
+    }
+
+    public List<E> listarUsuarios(Class<E> entidade) {
+        EntityTransaction entityTransaction = entityManager.getTransaction();
+        entityTransaction.begin();
+
+        List<E> list = entityManager.createQuery("from " + entidade.getName()).getResultList();
+        entityTransaction.commit();
+
+        return list;
     }
 }
