@@ -1,6 +1,7 @@
 package org.cursojava.springdata.dao.repository;
 
 import org.cursojava.springdata.model.Usuario;
+import org.springframework.data.jpa.repository.Lock;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
@@ -8,6 +9,7 @@ import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
+import javax.persistence.LockModeType;
 import java.util.List;
 
 @Repository
@@ -15,6 +17,8 @@ public interface UsuarioRepository extends CrudRepository<Usuario, Long> {
     @Query(value = "select u from Usuario u where u.nome like %?1%")
     public List<Usuario> buscaPorNome(String nome);
 
+    @Lock(LockModeType.READ)
+    @Transactional(readOnly = true)
     @Query(value = "select u from Usuario u where u.nome = :paramnome")
     public Usuario buscarPorNomeParam (@Param("paramnome") String nome);
 
