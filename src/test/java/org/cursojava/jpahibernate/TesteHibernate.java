@@ -2,6 +2,7 @@ package org.cursojava.jpahibernate;
 
 import org.cursojava.arquivos.Pessoa;
 import org.cursojava.jpahibernate.model.DAO.DaoGenerico;
+import org.cursojava.jpahibernate.model.TelefoneUsuario;
 import org.cursojava.jpahibernate.model.Usuario;
 import org.junit.Test;
 
@@ -138,6 +139,32 @@ public class TesteHibernate {
 
         for (Usuario usuario : usuarioList) {
             System.out.println(usuario);
+        }
+    }
+
+    @Test
+    public void testeSalvarTelefone() {
+        DaoGenerico daoGenerico = new DaoGenerico<>();
+        Usuario usuario = (Usuario) daoGenerico.pesquisarUsuario(2L, Usuario.class);
+
+        TelefoneUsuario telefoneUsuario = new TelefoneUsuario();
+        telefoneUsuario.setTipo("Casa");
+        telefoneUsuario.setNumero("999999998");
+        telefoneUsuario.setUsuario(usuario);
+
+        daoGenerico.salvarUsuario(telefoneUsuario);
+    }
+
+    @Test
+    public void testeConsultarTelefones() {
+        DaoGenerico daoGenerico = new DaoGenerico<>();
+        Usuario usuario = (Usuario) daoGenerico.pesquisarUsuario(2L, Usuario.class);
+
+        for (TelefoneUsuario telefoneUsuario : usuario.getTelefoneUsuarioList()) {
+            System.out.println(telefoneUsuario.getNumero());
+            System.out.println(telefoneUsuario.getTipo());
+            System.out.println(telefoneUsuario.getUsuario().getNome());
+            System.out.println("---------------------------------------");
         }
     }
 }

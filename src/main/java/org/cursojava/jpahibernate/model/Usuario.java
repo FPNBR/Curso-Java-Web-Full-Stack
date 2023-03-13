@@ -19,7 +19,7 @@ public class Usuario {
     private String senha;
     private int idade;
 
-    @OneToMany(mappedBy = "usuario")
+    @OneToMany(mappedBy = "usuario", fetch = FetchType.EAGER)
     private List<TelefoneUsuario> telefoneUsuarioList;
 
     public Long getId() {
