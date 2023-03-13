@@ -22,4 +22,9 @@ public interface UsuarioRepository extends CrudRepository<Usuario, Long> {
     @Transactional
     @Query(value = "delete from Usuario u where u.nome = ?1")
     public void deletePorNome(String nome);
+
+    @Modifying
+    @Transactional
+    @Query(value = "update Usuario u set u.email = ?1 where u.nome = ?2")
+    public void updateEmailPorNome(String email, String nome);
 }

@@ -108,6 +108,11 @@ public class SpringDataTeste {
     }
 
     @Test
+    public void testeUpdateEmailPorNome() {
+        usuarioRepository.updateEmailPorNome("teste@gmail.com", "teste4");
+    }
+
+    @Test
     public void testeConsulta() {
         System.out.println("Spring carregado com sucesso!");
     }
