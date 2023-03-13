@@ -15,6 +15,15 @@ public class DaoGenerico<E> {
         entityTransaction.commit();
     }
 
+    public E salvarAtualizarUsuario(E entidade) {
+        EntityTransaction entityTransaction = entityManager.getTransaction();
+        entityTransaction.begin();
+        E entidadeSalva = entityManager.merge(entidade);
+        entityTransaction.commit();
+
+        return entidadeSalva;
+    }
+
     public E pesquisarUsuario(E entidade) {
         Object id = HibernateUtil.getPrimaryKey(entidade);
         E e = (E) entityManager.find(entidade.getClass(), id);

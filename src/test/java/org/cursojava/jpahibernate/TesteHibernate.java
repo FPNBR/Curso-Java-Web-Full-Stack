@@ -37,4 +37,15 @@ public class TesteHibernate {
         Usuario usuario = daoGenerico.pesquisarUsuario(1L, Usuario.class);
         System.out.println(usuario);
     }
+
+    @Test
+    public void testeAtualizarUsuario() {
+        DaoGenerico<Usuario> daoGenerico = new DaoGenerico<>();
+
+        Usuario usuario = daoGenerico.pesquisarUsuario(1L, Usuario.class);
+        usuario.setIdade(99);
+        usuario.setNome("Nome atualizado");
+        usuario = daoGenerico.salvarAtualizarUsuario(usuario);
+        System.out.println(usuario);
+    }
 }
