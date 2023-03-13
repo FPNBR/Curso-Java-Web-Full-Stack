@@ -1,6 +1,7 @@
 package org.cursojava.jpahibernate.model;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Entity
 @NamedQueries({
@@ -17,6 +18,9 @@ public class Usuario {
     private String login;
     private String senha;
     private int idade;
+
+    @OneToMany(mappedBy = "usuario")
+    private List<TelefoneUsuario> telefoneUsuarioList;
 
     public Long getId() {
         return id;
@@ -72,6 +76,14 @@ public class Usuario {
 
     public void setIdade(int idade) {
         this.idade = idade;
+    }
+
+    public List<TelefoneUsuario> getTelefoneUsuarioList() {
+        return telefoneUsuarioList;
+    }
+
+    public void setTelefoneUsuarioList(List<TelefoneUsuario> telefoneUsuarioList) {
+        this.telefoneUsuarioList = telefoneUsuarioList;
     }
 
     @Override
