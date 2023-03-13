@@ -85,7 +85,23 @@ public class TesteHibernate {
     @Test
     public void testeQueryListMaxResult() {
         DaoGenerico<Usuario> daoGenerico = new DaoGenerico<>();
-        List<Usuario> usuarioList = daoGenerico.getEntityManager().createQuery(" from Usuario order by id").setMaxResults(2).getResultList();
+        List<Usuario> usuarioList = daoGenerico.getEntityManager().createQuery(" from Usuario order by id")
+                .setMaxResults(2)
+                .getResultList();
+
+        for (Usuario usuario : usuarioList) {
+            System.out.println(usuario);
+        }
+    }
+
+    @Test
+    public void testeQueryListParameter() {
+        DaoGenerico<Usuario> daoGenerico = new DaoGenerico<>();
+
+        List<Usuario> usuarioList = daoGenerico.getEntityManager().createQuery(" from Usuario where nome = :nome or sobrenome = :sobrenome")
+                .setParameter("nome", "Teste 1")
+                .setParameter("sobrenome", "Testando 1")
+                .getResultList();
 
         for (Usuario usuario : usuarioList) {
             System.out.println(usuario);
