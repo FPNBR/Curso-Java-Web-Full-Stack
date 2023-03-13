@@ -1,9 +1,7 @@
 package org.cursojava.springdata.model;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
+import java.util.List;
 
 @Entity
 public class Usuario {
@@ -20,6 +18,9 @@ public class Usuario {
     private String email;
 
     private int idade;
+
+    @OneToMany(mappedBy = "usuario", orphanRemoval = true, fetch = FetchType.EAGER)
+    private List<Telefone> telefoneList;
 
     public Long getId() {
         return id;
@@ -67,5 +68,13 @@ public class Usuario {
 
     public void setIdade(int idade) {
         this.idade = idade;
+    }
+
+    public List<Telefone> getTelefoneList() {
+        return telefoneList;
+    }
+
+    public void setTelefoneList(List<Telefone> telefoneList) {
+        this.telefoneList = telefoneList;
     }
 }

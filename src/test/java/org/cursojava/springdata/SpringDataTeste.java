@@ -1,6 +1,8 @@
 package org.cursojava.springdata;
 
+import org.cursojava.springdata.dao.repository.TelefoneRepository;
 import org.cursojava.springdata.dao.repository.UsuarioRepository;
+import org.cursojava.springdata.model.Telefone;
 import org.cursojava.springdata.model.Usuario;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -17,14 +19,18 @@ public class SpringDataTeste {
     @Autowired
     private UsuarioRepository usuarioRepository;
 
+    @Autowired
+    private TelefoneRepository telefoneRepository;
+
+
     @Test
     public void testeInsert() {
         Usuario usuario = new Usuario();
-        usuario.setEmail("teste5@gmail.com");
-        usuario.setIdade(5);
-        usuario.setLogin("teste5");
-        usuario.setSenha("teste5");
-        usuario.setNome("teste5");
+        usuario.setEmail("teste6@gmail.com");
+        usuario.setIdade(6);
+        usuario.setLogin("teste6");
+        usuario.setSenha("teste6");
+        usuario.setNome("teste6");
 
         usuarioRepository.save(usuario);
 
@@ -33,13 +39,21 @@ public class SpringDataTeste {
 
     @Test
     public void testeConsultaPorId() {
-        Optional<Usuario> usuario = usuarioRepository.findById(2L);
+        Optional<Usuario> usuario = usuarioRepository.findById(1L);
         System.out.println(usuario.get().getId());
         System.out.println(usuario.get().getEmail());
         System.out.println(usuario.get().getLogin());
         System.out.println(usuario.get().getSenha());
         System.out.println(usuario.get().getNome());
         System.out.println(usuario.get().getIdade());
+
+        for (Telefone telefone : usuario.get().getTelefoneList()) {
+            System.out.println(telefone.getNumero());
+            System.out.println(telefone.getTipo());
+            System.out.println(telefone.getId());
+            System.out.println(telefone.getUsuario().getNome());
+            System.out.println("--------------------------------");
+        }
     }
 
     @Test
@@ -115,5 +129,17 @@ public class SpringDataTeste {
     @Test
     public void testeConsulta() {
         System.out.println("Spring carregado com sucesso!");
+    }
+
+    @Test
+    public void testeInsertTelefone() {
+        Optional<Usuario> usuario = usuarioRepository.findById(1L);
+
+        Telefone telefone = new Telefone();
+        telefone.setTipo("Celular");
+        telefone.setNumero("999999999");
+        telefone.setUsuario(usuario.get());
+
+        telefoneRepository.save(telefone);
     }
 }

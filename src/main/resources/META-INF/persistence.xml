@@ -7,6 +7,7 @@
 
     <persistence-unit name="Curso-Java-Web-Full-Stack" transaction-type="RESOURCE_LOCAL">
         <class>org.cursojava.springdata.model.Usuario</class>
+        <class>org.cursojava.springdata.model.Telefone</class>
     <properties>
 
         <!-- Dados de conexão com o banco -->
