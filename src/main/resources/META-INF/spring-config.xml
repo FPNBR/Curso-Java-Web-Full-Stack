@@ -36,7 +36,7 @@
     </bean>
 
     <!-- Ativa o controle transacional -->
-    <bean id="transactionalManager" class="org.springframework.orm.jpa.JpaTransactionManager" scope="singleton">
+    <bean id="transactionManager" class="org.springframework.orm.jpa.JpaTransactionManager" scope="singleton">
         <property name="entityManagerFactory" ref="entityManagerFactory"/>
     </bean>
 
