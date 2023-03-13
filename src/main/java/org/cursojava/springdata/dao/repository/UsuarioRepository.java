@@ -1,10 +1,12 @@
 package org.cursojava.springdata.dao.repository;
 
 import org.cursojava.springdata.model.Usuario;
+import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
@@ -15,4 +17,9 @@ public interface UsuarioRepository extends CrudRepository<Usuario, Long> {
 
     @Query(value = "select u from Usuario u where u.nome = :paramnome")
     public Usuario buscarPorNomeParam (@Param("paramnome") String nome);
+
+    @Modifying
+    @Transactional
+    @Query(value = "delete from Usuario u where u.nome = ?1")
+    public void deletePorNome(String nome);
 }

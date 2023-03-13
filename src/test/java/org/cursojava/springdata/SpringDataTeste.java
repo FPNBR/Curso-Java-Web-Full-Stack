@@ -103,6 +103,11 @@ public class SpringDataTeste {
     }
 
     @Test
+    public void testeDeletePorNome() {
+        usuarioRepository.deletePorNome("teste5");
+    }
+
+    @Test
     public void testeConsulta() {
         System.out.println("Spring carregado com sucesso!");
     }
