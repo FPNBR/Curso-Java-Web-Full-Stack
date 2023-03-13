@@ -66,6 +66,14 @@ public class SpringDataTeste {
     }
 
     @Test
+    public void testeDelete() {
+        //Optional<Usuario> usuario = usuarioRepository.findById(3L);
+        //usuarioRepository.delete(usuario.get());
+
+        usuarioRepository.deleteById(5L);
+    }
+
+    @Test
     public void testeConsulta() {
         System.out.println("Spring carregado com sucesso!");
     }
