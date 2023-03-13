@@ -42,6 +42,21 @@ public class SpringDataTeste {
     }
 
     @Test
+    public void testeConsultaTodos() {
+        Iterable<Usuario> usuarioIterable = usuarioRepository.findAll();
+
+        for (Usuario usuario : usuarioIterable) {
+            System.out.println(usuario.getId());
+            System.out.println(usuario.getEmail());
+            System.out.println(usuario.getLogin());
+            System.out.println(usuario.getSenha());
+            System.out.println(usuario.getNome());
+            System.out.println(usuario.getIdade());
+            System.out.println("-------------------------------");
+        }
+    }
+
+    @Test
     public void testeConsulta() {
         System.out.println("Spring carregado com sucesso!");
     }
