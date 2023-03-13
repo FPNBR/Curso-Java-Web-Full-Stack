@@ -57,6 +57,15 @@ public class SpringDataTeste {
     }
 
     @Test
+    public void testeUpdate() {
+        Optional<Usuario> usuario = usuarioRepository.findById(3L);
+        Usuario data = usuario.get();
+        data.setNome("Testando Update");
+        data.setIdade(99);
+        usuarioRepository.save(data);
+    }
+
+    @Test
     public void testeConsulta() {
         System.out.println("Spring carregado com sucesso!");
     }
