@@ -34,4 +34,14 @@ public class DaoGenerico<E> {
         E e = (E) entityManager.find(entidade, id);
         return e;
     }
+
+    public void deletarUsuarioPorId(E entidade) {
+        Object id = HibernateUtil.getPrimaryKey(entidade);
+
+        EntityTransaction entityTransaction = entityManager.getTransaction();
+        entityTransaction.begin();
+
+        entityManager.createNativeQuery("delete from " + entidade.getClass().getSimpleName().toLowerCase() + " where id =" + id).executeUpdate();
+        entityTransaction.commit();
+    }
 }
