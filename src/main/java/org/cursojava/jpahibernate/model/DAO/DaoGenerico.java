@@ -55,4 +55,8 @@ public class DaoGenerico<E> {
 
         return list;
     }
+
+    public EntityManager getEntityManager() {
+        return entityManager;
+    }
 }

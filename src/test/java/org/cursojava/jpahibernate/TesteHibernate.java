@@ -71,4 +71,14 @@ public class TesteHibernate {
             System.out.println("----------------------------------------------");
         }
     }
+
+    @Test
+    public void testeQueryList() {
+        DaoGenerico<Usuario> daoGenerico = new DaoGenerico<>();
+        List<Usuario> usuarioList = daoGenerico.getEntityManager().createQuery(" from Usuario where nome = 'Teste 1'").getResultList();
+
+        for (Usuario usuario : usuarioList) {
+            System.out.println(usuario);
+        }
+    }
 }
