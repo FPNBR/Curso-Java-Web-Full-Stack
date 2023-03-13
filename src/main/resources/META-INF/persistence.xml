@@ -6,7 +6,7 @@
              version="2.1">
 
     <persistence-unit name="jpa" transaction-type="RESOURCE_LOCAL">
-        <class>org.cursojava.jpahibernate.models.Usuario</class>
+        <class>org.cursojava.jpahibernate.model.Usuario</class>
     <properties>
 
         <!-- Dados de conexão com o banco -->

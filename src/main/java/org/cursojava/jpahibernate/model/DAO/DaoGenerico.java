@@ -1,6 +1,6 @@
-package org.cursojava.jpahibernate.models.DAO;
+package org.cursojava.jpahibernate.model.DAO;
 
-import org.cursojava.jpahibernate.HibernateUtil;
+import org.cursojava.jpahibernate.util.HibernateUtil;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityTransaction;
@@ -13,5 +13,16 @@ public class DaoGenerico<E> {
         entityTransaction.begin();
         entityManager.persist(entidade);
         entityTransaction.commit();
+    }
+
+    public E pesquisarUsuario(E entidade) {
+        Object id = HibernateUtil.getPrimaryKey(entidade);
+        E e = (E) entityManager.find(entidade.getClass(), id);
+        return e;
+    }
+
+    public E pesquisarUsuario(Long id, Class<E> entidade) {
+        E e = (E) entityManager.find(entidade, id);
+        return e;
     }
 }

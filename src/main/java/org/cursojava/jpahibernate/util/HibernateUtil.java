@@ -1,4 +1,4 @@
-package org.cursojava.jpahibernate;
+package org.cursojava.jpahibernate.util;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
@@ -24,5 +24,9 @@ public class HibernateUtil {
 
     public static EntityManager getEntityManager() {
         return entityManagerFactory.createEntityManager(); // Fornece a parte de persistência
+    }
+
+    public static Object getPrimaryKey(Object entity) { // Retorna a primary key
+        return entityManagerFactory.getPersistenceUnitUtil().getIdentifier(entity);
     }
 }

@@ -1,4 +1,4 @@
-package org.cursojava.jpahibernate.models;
+package org.cursojava.jpahibernate.model;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -71,5 +71,18 @@ public class Usuario {
 
     public void setIdade(int idade) {
         this.idade = idade;
+    }
+
+    @Override
+    public String toString() {
+        return "Usuario{" +
+                "id=" + id +
+                ", nome='" + nome + '\'' +
+                ", sobrenome='" + sobrenome + '\'' +
+                ", email='" + email + '\'' +
+                ", login='" + login + '\'' +
+                ", senha='" + senha + '\'' +
+                ", idade=" + idade +
+                '}';
     }
 }
