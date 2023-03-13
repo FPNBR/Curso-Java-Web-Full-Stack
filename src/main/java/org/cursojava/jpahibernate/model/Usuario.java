@@ -1,11 +1,12 @@
 package org.cursojava.jpahibernate.model;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 @Entity
+@NamedQueries({
+        @NamedQuery(name = "Usuario.buscarTodos", query = "select u from Usuario u"),
+        @NamedQuery(name = "Usuario.buscarPorNome", query = "select u from Usuario u where u.nome = :nome")
+})
 public class Usuario {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
