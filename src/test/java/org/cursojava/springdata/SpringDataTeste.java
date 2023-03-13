@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
+import java.util.List;
 import java.util.Optional;
 
 @RunWith(SpringJUnit4ClassRunner.class)
@@ -71,6 +72,21 @@ public class SpringDataTeste {
         //usuarioRepository.delete(usuario.get());
 
         usuarioRepository.deleteById(5L);
+    }
+
+    @Test
+    public void testeConsultaPorNome() {
+        List<Usuario> usuarioList = usuarioRepository.buscaPorNome("teste1");
+
+        for (Usuario usuario : usuarioList) {
+            System.out.println(usuario.getId());
+            System.out.println(usuario.getEmail());
+            System.out.println(usuario.getLogin());
+            System.out.println(usuario.getSenha());
+            System.out.println(usuario.getNome());
+            System.out.println(usuario.getIdade());
+            System.out.println("-------------------------------");
+        }
     }
 
     @Test
