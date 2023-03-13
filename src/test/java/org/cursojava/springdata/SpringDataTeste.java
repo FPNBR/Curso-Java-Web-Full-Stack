@@ -76,7 +76,7 @@ public class SpringDataTeste {
 
     @Test
     public void testeConsultaPorNome() {
-        List<Usuario> usuarioList = usuarioRepository.buscaPorNome("teste1");
+        List<Usuario> usuarioList = usuarioRepository.buscaPorNome("teste");
 
         for (Usuario usuario : usuarioList) {
             System.out.println(usuario.getId());
@@ -87,6 +87,19 @@ public class SpringDataTeste {
             System.out.println(usuario.getIdade());
             System.out.println("-------------------------------");
         }
+    }
+
+    @Test
+    public void testeConsultaPorNomeParam() {
+        Usuario usuario = usuarioRepository.buscarPorNomeParam("teste3");
+
+            System.out.println(usuario.getId());
+            System.out.println(usuario.getEmail());
+            System.out.println(usuario.getLogin());
+            System.out.println(usuario.getSenha());
+            System.out.println(usuario.getNome());
+            System.out.println(usuario.getIdade());
+            System.out.println("-------------------------------");
     }
 
     @Test
